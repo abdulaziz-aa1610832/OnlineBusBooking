@@ -7,7 +7,8 @@ document.getElementById("getRoute")
 .addEventListener('click', getRoutesInfo);
 
 
-
+document.getElementById("login")
+.addEventListener('submit', doLogin);
 
 function getUsername(){
 
@@ -58,4 +59,29 @@ function getRoutesInfo(){
             document.getElementById("outputRoutes").innerHTML = output;
         })
     })  
+}
+
+
+function doLogin(theEvent){
+    theEvent.preventDefault();
+
+    let title = document.getElementById("username").value;
+    let body = document.getElementById("password").value;
+    console.log("test");
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method:'POST',
+        headers: {
+            'Accept' : 'application/json text/plain, */',
+            'Content-type' : 'application/json'
+        },
+     body: JSON.stringify({title:title, body:body})
+    })
+    .then((response_from_api) => response_from_api.json())
+    .then(data_from_json => {
+        console.log("test");
+        console.log(data_from_json);
+        window.location.replace("dashboard.html");
+
+    })
+
 }
