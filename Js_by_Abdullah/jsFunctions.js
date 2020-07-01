@@ -133,3 +133,46 @@ function getSingleRouteInfo(routeNumber){
 
 
 
+function submitRoute(){
+
+    //  going to prevent the page from reloading or
+    // navigating away when you actually submit the form
+    theEvent.preventDefault();
+
+    let chosenRouteId = "";
+    
+    // looping through all available radio buttons(routes to choose from)
+    // looking for the chosen(checked) one we get it's value(which is techincally 
+    // the route id from getRoutesInf() function that we dynamically typed, no we submit the chosen one)
+    let  elements = document.getElementsByTagName('input'); 
+      
+    for(i = 0; i < elements.length; i++) { 
+          
+        if(elements[i].type="radio") { 
+            if(elements[i].checked){
+                chosenRouteId = elements[i].value;
+            }         
+        } 
+    } 
+
+    fetch('api.php', {
+        method:'POST',
+        body: `action=submitRoute&routeId=${chosenRouteId}`
+    })
+    .then((response_from_api) => response_from_api.json())
+    .then(data_from_json => {
+        
+        if(data_from_json.success){
+            // the route has been submitted
+            window.location("confirmedBooking.html");
+        }
+        else{
+            // success was false
+            alert("sometthing wrong happend, logging error to console");
+            console.log(data_from_json.error);
+            window.location("error.html");
+        }
+
+    })
+
+}
