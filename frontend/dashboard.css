@@ -1,3 +1,89 @@
-.img-overlay {
-    background-image: image("images/pic_01.jpg");
-}
+*{
+    box-sizing: border-box;
+    font-size: 18px;
+  }
+  body{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Helvetica', 'Arial', 'sans-serif';
+    background-image: url(images/pic_01.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  h2 {
+    color: white;
+  }
+  form{
+    width: 920px;
+    margin: 20px;
+    padding: 70px 20px;
+    display: inline-block;
+    
+  }
+  fieldset{
+    border: none;
+  }
+  .checkbox-group label{
+    padding-right: 90px;
+  }
+  .from-place, .to-place{
+    width: 90%;
+    height: 36px;
+    padding: 2px 8px;
+    border: 1px solid #dcdcdc;
+    outline: none;
+  }
+  .group-field label{
+    display: block;
+    padding: 10px 0;
+  }
+
+  #from-place-id, #to-place-id {
+    width: 400px;
+  }
+  fieldset div{
+    display: inline-block;
+    padding: 10px 0px;
+    /*float: left;*/
+  }    
+  .group-field{
+      width: 420px;
+      height: auto;
+  }
+  div label {
+    color: white;
+  }
+  .search-btn{
+    display:block;
+    margin:0px auto;
+    padding: 10px 22px;
+    border-radius: 6px;
+    outline: none;
+    font-weight: bold;
+    background: #ff7600;
+    color: white;
+    border: none;
+    margin-top: 20px;
+  }
+
+  .bold-type{
+    font-weight: bold;
+  }
+  ::placeholder{
+    color: #999999;
+  }
+  
+  input[type="date"] {
+    background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  95% 50% no-repeat ;
+    height: 36px;
+    border: 1px solid #dcdcdc;
+    outline: none;
+  }
+  input[type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  
+  
