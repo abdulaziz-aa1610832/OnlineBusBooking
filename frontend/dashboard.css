@@ -5,7 +5,7 @@
   body{
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Helvetica', 'Arial', 'sans-serif';
-    background-image: url(images/pic_01.jpg);
+    background-image: url(img/MainImage.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: 2rem;
