@@ -69,9 +69,9 @@ switch ($action) {
         if (!verifySession() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         }
-        $submitted_origin = $data->origin or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destenation":\"bar\", \"date\":\"13/13/1313\"}');
-        $submitted_destination = $data->destination or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destenation":\"bar\", \"date\":\"13/13/1313\"}');
-        $submitted_date = $data->date or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destenation":\"bar\", \"date\":\"13/13/1313\"}');
+        $submitted_origin = $data->origin or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination":\"bar\", \"date\":\"13/13/1313\"}');
+        $submitted_destination = $data->destination or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination":\"bar\", \"date\":\"13/13/1313\"}');
+        $submitted_date = $data->date or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination":\"bar\", \"date\":\"13/13/1313\"}');
 
 
         //sql query ( use the above variable with the select statement in addition to available seatc count is not zero) 
