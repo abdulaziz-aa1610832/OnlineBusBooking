@@ -5,7 +5,7 @@
   body{
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Helvetica', 'Arial', 'sans-serif';
-    background-image: url(img/MainImage.jpg);
+    background-image: url(../img/MainImage.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: 2rem;
@@ -16,8 +16,8 @@
     margin: 0 auto;
   }
 
-  h2 {
-    color: white;
+  .block-text h2 {
+    color: black;
   }
   form{
     width: 920px;
