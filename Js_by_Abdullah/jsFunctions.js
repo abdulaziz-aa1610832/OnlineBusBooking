@@ -115,7 +115,7 @@ function getSingleRouteInfo(routeNumber){
     
     fetch(api.php, {
         method: 'POST',
-        body: `action=getSingleRouteInfo&data=&routeId=${routeNumber}`
+        body: `action=getSingleRouteInfo&routeId=${routeNumber}`
     })
     .then((response_from_api) => response_from_api.json())
     .then((data_from_json) =>{
@@ -176,3 +176,5 @@ function submitRoute(){
     })
 
 }
+
+
