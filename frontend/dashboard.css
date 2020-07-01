@@ -8,8 +8,14 @@
     background-image: url(images/pic_01.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position-y: 2rem;
   }
   
+  .container {
+    
+    margin: 0 auto;
+  }
+
   h2 {
     color: white;
   }
