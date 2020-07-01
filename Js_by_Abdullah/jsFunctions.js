@@ -60,6 +60,7 @@ function getRoutesInfo(){
 
         if(data_from_json.success){
             // we get the all the objects of routes, we return them for further use.
+            console.log(data_from_json.data);
             return JSON.stringify(data_from_json.data);
         }
         else{
@@ -106,6 +107,28 @@ function doLogin(theEvent){
          }
     })
 
+}
+
+
+
+function getSingleRouteInfo(routeNumber){
+    
+    fetch(api.php, {
+        method: 'POST',
+        body: `action=getSingleRouteInfo&data=&routeId=${routeNumber}`
+    })
+    .then((response_from_api) => response_from_api.json())
+    .then((data_from_json) =>{
+         
+        if(data_from_json){
+            // returning one flight info (after user choses it.)
+            return data_from_json.data; 
+        }
+        else{
+            console.log(data_from_json.error);
+            window.location("error.html");
+        }
+    })
 }
 
 
