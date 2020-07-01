@@ -112,4 +112,11 @@ switch ($action) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
+
+    case "getSession":
+        if (!verifySession() or $_SESSION["login"] != "true") {
+            die('{"success":false, "data":"Not logged in!"}');
+        }
+        echo '{"success":true, "data":' . json_encode($_SESSION) . '}'; 
+        break;
 }
