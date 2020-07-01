@@ -89,4 +89,27 @@ switch ($action) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
+
+    case "getAllBookings":
+        if (!verifySession() or $_SESSION["login"] != "true") {
+            die('{"success":false, "data":"Not logged in!"}');
+        }else if($_SESSION['level'] != "2"){
+            die('{"success":false, "data":"Not admin!"}');
+        }
+
+        //sql query
+        $sql = "";
+        try{
+            $result = mysqli_query($conn, $sql);
+            $rows = array();
+            while($r = mysqli_fetch_assoc($result)){
+                $id = $r['booking_id'];
+                $rows[$id] = $r;
+            }
+
+            echo '{"success":true, "data":' . json_encode($rows) . '}'; 
+        }catch(Exception $e){
+            die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
+        }
+        break;
 }
