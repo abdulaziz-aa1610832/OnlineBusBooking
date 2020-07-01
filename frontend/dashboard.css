@@ -12,7 +12,7 @@
   }
   
   .container {
-    
+
     margin: 0 auto;
   }
 
@@ -29,7 +29,7 @@
   fieldset{
     border: none;
   }
-  .checkbox-group label{
+  .radio-group label{
     padding-right: 90px;
   }
   .from-place, .to-place{
@@ -66,7 +66,7 @@
     border-radius: 6px;
     outline: none;
     font-weight: bold;
-    background: #ff7600;
+    background: #ff0000;
     color: white;
     border: none;
     margin-top: 20px;
