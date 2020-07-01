@@ -10,78 +10,126 @@ document.getElementById("getRoute")
 document.getElementById("login")
 .addEventListener('submit', doLogin);
 
-function getUsername(){
+document.getElementById("submitRoute")
+.addEventListener('submit', submitRoute);
 
-    fetch("users.json")
+
+
+
+function getSession(){
+
+    fetch('api.php', {
+        method:'POST',
+        body: `action=getSession&data={}`
+    })
     .then((response_from_api) => response_from_api.json() )
     .then((data_from_json) => {
 
-        //console.log(data_from_json)
-        let output = '<h2>Users I got </h2>';
-        data_from_json.forEach(function(user){
+        if(data_from_json.success){
+            // we get the session here, we return it as a json object for further use.
+            return JSON.stringify(data_from_json.data);
+        }
+        else{
+            // session is false
+            alert(data_from_json.error);
+            window.location("error.html");
+        }
 
-            output += `
-
-            <ul>
-            <li>UserId: ${user.id}</li>
-            <li>UserName: ${user.name}</li>
-            </ul>  
-            `;
-            document.getElementById("outputUsers").innerHTML = output;
-        })
+        
     })  
+
+
 }
+
 
 
 function getRoutesInfo(){
 
-    fetch("routes.json")
+    // action=getRoutesInfo&data={"origin":"foo", "destination":"bar", "date":"13/13/1313"}
+
+    let originFromForm = document.getElementById("orgin").value;
+    let destinationFromForm = document.getElementById("destination").value;
+    let dateFromForm = document.getElementById("date-of-travel").value;
+
+    fetch('api.php', {
+        method:'POST',
+        body: `action=getRoutesInfo&data={"origin":"${originFromForm}", "destination":"${destinationFromForm}", "date":"${dateFromForm}"}`
+    })
     .then((response_from_api) => response_from_api.json() )
     .then((data_from_json) => {
 
-        //console.log(data_from_json)
-        let output = '<h2>Routes I got </h2>';
+        if(data_from_json.success){
+            // we get the all the objects of routes, we return them for further use.
+            console.log(data_from_json.data);
+            return JSON.stringify(data_from_json.data);
+        }
+        else{
+            // success is false, show what happend?
+            alert(data_from_json.error);
+            window.location("error.html");
+        }
+
         
+    }) 
 
-        // we loop through each route in the json file
-        data_from_json.forEach(function(route){
-
-            output += `
-            Route No. ${route.id}
-            <ul>
-            <li>From: ${route.origin}</li>
-            <li>To: ${route.destination}</li>
-            <li>Date: ${route.date}</li>
-            <li>Capacity: ${route.capacity}</li>
-            
-            </ul>  
-            `;
-            document.getElementById("outputRoutes").innerHTML = output;
-        })
-    })  
 }
 
 
 function doLogin(theEvent){
+    
+    //  going to prevent the page from reloading or
+    // navigating away when you actually submit the form
     theEvent.preventDefault();
 
-    let title = document.getElementById("username").value;
-    let body = document.getElementById("password").value;
+    // extract data from the form.
+    let userFromForm = document.getElementById("username").value;
+    let passwordFromForm = document.getElementById("password").value;
+
+    
     console.log("test");
-    fetch('https://jsonplaceholder.typicode.com/posts', {
+
+
+    fetch('api.php', {
         method:'POST',
-        headers: {
-            'Accept' : 'application/json text/plain, */',
-            'Content-type' : 'application/json'
-        },
-     body: JSON.stringify({title:title, body:body})
+        body: `action=doLogin&data={username:${userFromForm}, password=${passwordFromForm}}`
     })
     .then((response_from_api) => response_from_api.json())
     .then(data_from_json => {
-        console.log("test");
-        console.log(data_from_json);
-        window.location.replace("dashboard.html");
-
+        if(data_from_json.success){  
+            window.location.replace("dashboard.html");
+        }
+        else{
+            console.log("api returned false for success, printing the log");
+            console.log(data_from_json);
+            
+            // we can redirect to error page here
+            window.location("error.html");
+         }
     })
 
 }
+
+
+
+function getSingleRouteInfo(routeNumber){
+    
+    fetch(api.php, {
+        method: 'POST',
+        body: `action=getSingleRouteInfo&data=&routeId=${routeNumber}`
+    })
+    .then((response_from_api) => response_from_api.json())
+    .then((data_from_json) =>{
+         
+        if(data_from_json){
+            // returning one flight info (after user choses it.)
+            return data_from_json.data; 
+        }
+        else{
+            console.log(data_from_json.error);
+            window.location("error.html");
+        }
+    })
+}
+
+
+
