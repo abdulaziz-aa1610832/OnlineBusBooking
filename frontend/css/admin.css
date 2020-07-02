@@ -4,7 +4,10 @@ body{
     background-color: burlywood;
 }
 
-.admin-buttons{
-    background-color: chartreuse;
-    width: 50%;
+
+
+#all-bookings{
+    background-color: rgb(255, 44, 44);
+    width: 80%;
+    opacity: 80%;
 }
