@@ -31,7 +31,7 @@ function getSession(){
         }
         else{
             // session is false
-            alert(data_from_json.error);
+            alert(data_from_json.data);
             window.location("error.html");
         }
 
@@ -65,7 +65,7 @@ function getRoutesInfo(){
         }
         else{
             // success is false, show what happend?
-            alert(data_from_json.error);
+            alert(data_from_json.data);
             window.location("error.html");
         }
 
@@ -125,7 +125,7 @@ function getSingleRouteInfo(routeNumber){
             return data_from_json.data; 
         }
         else{
-            console.log(data_from_json.error);
+            console.log(data_from_json.data);
             window.location("error.html");
         }
     })
@@ -164,13 +164,13 @@ function submitRoute(){
         
         if(data_from_json.success){
             // the route has been submitted
-            window.location("confirmedBooking.html");
+            window.location.href = "confirmedBooking.html";
         }
         else{
             // success was false
             alert("sometthing wrong happend, logging error to console");
-            console.log(data_from_json.error);
-            window.location("error.html");
+            console.log(data_from_json.data);
+            window.location.href = "error.html";
         }
 
     })
