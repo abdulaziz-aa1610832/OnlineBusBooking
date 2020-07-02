@@ -122,7 +122,6 @@ switch ($action) {
 
     case "getSingleRouteInfo":
         if (!verifySession() or $_SESSION["login"] != "true") {
-
             die('{"success":false, "data":"Not logged in!"}');
         }
 
@@ -142,6 +141,32 @@ switch ($action) {
         } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
+        break;
+    
+    case "submitRoute":
+        if (!verifySession() or $_SESSION["login"] != "true") {
+            die('{"success":false, "data":"Not logged in!"}');
+        }
 
+        $submitted_routeid = $data->routeId or die('{"success":false, "data":"data parameter should be in this format {"routeId":routeIdHere}');
+        $user_id = $_SESSION['id'];
+
+        //sql query (insert booking, associate the user id with this record)(insert statement)
+        $sql1 = "";
+        //sql query (decrement available seats for this route) (update statement)
+        $sql2 = "";
+        try {
+            if(mysqli_query($conn, $sql1)){
+                if(mysqli_query($conn, $sql2)){
+                    echo '{"success":"true", "data":""}';
+                }else{
+                    die('{"success":false, "data":"Booking added to the database but could not decrement available seats for this trip}');
+                }
+            }else{
+                die('{"success":false, "data":"Could not add booking to the database"}');
+            }
+        } catch (Exception $e) {
+            die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
+        }
         break;
 }
