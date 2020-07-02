@@ -6,13 +6,15 @@
     <link rel="stylesheet" type="text/css" href="css/dashboard.css">
     <title>Dashbord</title>
 </head>
+
+
 <body>
     <div class="container">
         <div class="block-text">
             <h2>BOOK YOUR TICKET</h2>
         </div>
         <div>
-            <form action="" method="post" class="trip-form">
+            <form id="search-form" action="" method="post" class="trip-form" >
                 <fieldset>
                     <div class="group-field">
                     <label for="from" class="bold-type">From </label>
@@ -60,10 +62,24 @@
                 </fieldset>
                 
             
-                <input class="search-btn" type="submit" value="CHECK AVAILABILITY"/>
+                <input id="submitbutton" class="search-btn" type="button" value="submit"/>
               </form>
     </div>
 </div>
     
 </body>
+
+
+<script>
+
+  document.getElementById("submitbutton").addEventListener('click', afterCheckForAvailability);
+  
+  function afterCheckForAvailability(){
+      document.getElementById("search-form").style.display = "none";
+
+      jsonObj = 
+  
+  }
+  
+  </script>
 </html>
