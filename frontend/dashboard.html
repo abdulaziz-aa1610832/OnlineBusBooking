@@ -4,76 +4,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+
+  <!--CSS file-->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!--To include social media icons at the bottom of the page-->
+  <script src="https://kit.fontawesome.com/19d4a4331a.js" crossorigin="anonymous"></script>
   <title>Dashbord</title>
 </head>
 
 
 <body>
-  <div id="form-container" class="form-container">
+  <header>
+    <div class="profilePic">
+      <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
+    </div>
+    <div class="signOut">
+      <button class="btn">sign out</button>
+    </div>
+    </nav>
+  </header>
+  <main>
     <div class="block-text">
       <h2>BOOK YOUR TICKET</h2>
     </div>
     <div>
       <form id="search-form" action="" method="post" class="trip-form">
-        <fieldset>
-          <div class="group-field">
-            <label for="from" class="bold-type">From </label>
-            <select name="from-place" id="from-place-id" maxlength="100">
-              <option value="">Select City</option>
-              <option value="1">Johor Bahru</option>
-              <option value="2">Sabah</option>
-              <option value="3">Kuala Lampur</option>
-              <option value="4">Selangor</option>
-              <option value="5">Melacaa</option>
-            </select>
-          </div>
-          <div class="group-field">
-            <label for="to" class="bold-type">To </label>
-            <select name="to-place" id="to-place-id" maxlength="100">
-              <option value="">Select City</option>
-              <option value="5">Johor Bahru</option>
-              <option value="2">Sabah</option>
-              <option value="4">Kuala Lampur</option>
-              <option value="3">Selangor</option>
-              <option value="1">Melacaa</option>
-            </select>
-          </div>
-        </fieldset>
-        <fieldset class="radio-group">
-          <label for="one-way" class="bold-type">
-            <input type="radio" id="one-way" name="trip-type" value="oneWay" />
-            One Way
-          </label>
-          <label for="round-trip" class="bold-type">
-            <input type="radio" id="round-trip" name="trip-type" value="roundTrip" checked="checked" />
-            Round trip
-          </label>
-        </fieldset>
 
-        <fieldset>
-          <div class="group-field">
-            <label for="depart" class="bold-type">Depart on</label>
-            <input placeholder="Pick a date" type="date" name="depart" />
-          </div>
-          <div class="group-field">
-            <label for="return" class="bold-type">Return on</label>
-            <input placeholder="Pick a date" type="date" name="return" />
-          </div>
-        </fieldset>
+        <div class="group-field">
+          <label for="from" class="bold-type">From </label>
+          <select name="from-place" id="from-place-id" maxlength="100">
+            <option value="">Select City</option>
+            <option value="1">Johor Bahru</option>
+            <option value="2">Sabah</option>
+            <option value="3">Kuala Lampur</option>
+            <option value="4">Selangor</option>
+            <option value="5">Melacaa</option>
+          </select>
+        </div>
+        <div class="group-field">
+          <label for="to" class="bold-type">To </label>
+          <select name="to-place" id="to-place-id" maxlength="100">
+            <option value="">Select City</option>
+            <option value="5">Johor Bahru</option>
+            <option value="2">Sabah</option>
+            <option value="4">Kuala Lampur</option>
+            <option value="3">Selangor</option>
+            <option value="1">Melacaa</option>
+          </select>
+        </div>
+        <div class="group-field">
+          <label for="depart" class="bold-type">Depart on</label>
+          <input placeholder="Pick a date" type="date" name="depart" />
+        </div>
 
 
-        <input id="submitbutton" class="search-btn" type="button" value="submit" />
+        <input id="submitbutton" id="search-btn" type="button" value="submit" />
       </form>
+    </div>
+  </main>
+
+  <div id="after-submit">
+
+
+
+  </div>
+
+  <div id="social">
+    <div id="social-container">
+      <a href=""><i class="fab fa-facebook-f"></i></a>
+      <a href=""><i class="fab fa-twitter"></i></a>
+      <a href=""><i class="fab fa-instagram"></i></a>
+      <a href=""><i class="fab fa-linkedin-in"></i></a>
+      <a href=""><i class="fab fa-youtube"></i></a>
     </div>
   </div>
 
-
-  <div id="after-submit">
-   
-
-    
-  </div>
+  <footer>
+    <div id="contact-container">
+      <div class="contact">
+        <i class="fas fa-phone"></i>
+        <p>Call Us Now<br><b>+6011563135992</b></p>
+      </div>
+      <div class="contact">
+        <i class="fas fa-envelope"></i>
+        <p>Or send us a message<br><b>contact@onlinebusbooking.com</b></p>
+      </div>
+    </div>
+    <p>© Online Bus Booking | All Rights Reserved 2020</p>
+  </footer>
 
 </body>
 
@@ -105,7 +124,7 @@
     `;
 
 
-        for(i in data_in_json){
+        for (i in data_in_json) {
           console.log(data_in_json[i].origin);
           divToInsert += `<tr>
                 <td>${data_in_json[i].id}</td>
@@ -114,7 +133,7 @@
               </tr>`;
         }
 
-        
+
         divToInsert += `</tbody>
       </table>`
         document.getElementById("after-submit").innerHTML = divToInsert;

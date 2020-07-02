@@ -30,6 +30,18 @@ header a:hover{
     color:#cccccc;
     font-weight:bold;
 }
+header img {
+    width: 4rem;
+    height: 4rem;
+}
+.profilePic {
+    float: left;
+    padding: 0 0 5rem 2rem;
+}
+.signOut {
+    display: flex;
+    justify-content: flex-end;
+}
 #websiteName {
     text-align: center;
     margin-bottom: 1.25rem;
@@ -99,6 +111,10 @@ nav {
 	cursor:pointer;
 	position:relative;
 }
+.btn:hover {
+    background-color:#e8491db9;
+    font-weight: bold;
+}
 #haveAnAccount {
     margin: 2rem;
     color:#ffffff;
@@ -114,18 +130,6 @@ nav {
     height: 100vh;
     font-size: 4rem;
     color: #ffffff;
-}
-.button{
-    background-color: #e8491d;
-    color: #ffffff;
-    height: 2rem;
-    width: 5rem;
-    font-weight: bold;
-    text-decoration: none;
-}
-.button:hover {
-    background-color: #a02c0c;
-    color: #ffffff85;
 }
 #services {
     background-color: #ffffff;
@@ -189,7 +193,7 @@ a .fab {
     font-size: 2rem;
 }
 a .fab:hover {
-    color:lightpink;
+    color:#FFB6C1;
 }
 footer {
     background-color: #2a3236;
