@@ -98,13 +98,17 @@ switch ($action) {
         }
 
         //sql query
-        $sql = "";
+        $sql1 = "";
         try {
-            $result = mysqli_query($conn, $sql);
+            $result = mysqli_query($conn, $sql1);
             $rows = array();
             while ($r = mysqli_fetch_assoc($result)) {
                 $id = $r['booking_id'];
-                $rows[$id] = $r;
+                $route_id = $r['route'];
+                $sql2 = "" ; //utilize $route_id to get the route record from the routes table
+                $result2 = mysqli_query($conn,$sql2);
+                $row = mysqli_fetch_assoc($result2);
+                $rows[$id] = $row;
             }
 
             echo '{"success":true, "data":' . json_encode($rows) . '}';
