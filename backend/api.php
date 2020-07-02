@@ -199,4 +199,32 @@ switch ($action) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
+
+    case "getUserBookings":
+        if (!verifySession() or $_SESSION["login"] != "true") {
+            die('{"success":false, "data":"Not logged in!"}');
+        }
+
+        $user_id = $_SESSION['id'];
+
+        //sql query (Select bookings made by the user with $user_id)
+        $sql1 = "";
+        try {
+            $result = mysqli_query($conn, $sql1);
+            $rows = array();
+            while ($r = mysqli_fetch_assoc($result)) {
+                $id = $r['booking_id'];
+                $route_id = $r['route'];
+                $sql2 = "" ; //utilize $route_id to get the route record from the routes table
+                $result2 = mysqli_query($conn,$sql2);
+                $row = mysqli_fetch_assoc($result2);
+                $rows[$id] = $row;
+            }
+
+            echo '{"success":true, "data":' . json_encode($rows) . '}';
+        } catch (Exception $e) {
+            die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
+        }
+        break;
+
 }
