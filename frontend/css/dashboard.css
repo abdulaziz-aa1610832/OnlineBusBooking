@@ -91,5 +91,11 @@
   input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
   }
+
+  #after-submit{
+
+    background-color: rgb(245, 187, 149);
+    opacity: 80%;
+  }
   
   
