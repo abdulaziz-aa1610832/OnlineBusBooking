@@ -2,14 +2,19 @@
 <html>
     <head>
         <title>Admin Page</title>
+        <link rel="stylesheet" type="text/css" href="css/admin.css">
+        
     </head>
     <body>
         <header>
         </header>
         <main>
-            <div class="admin-buttons">
-                <button>Add Trip</button>
+            <div id="div-btn" class="admin-buttons">
+                <button id="addtrip">Add Trip</button>
                 <button>Delete Trip</button>
+            </div>
+            <div id="all-bookings">
+
             </div>
             test
         </main>
@@ -18,3 +23,55 @@
         </footer>
     </body>
 </html>
+
+
+
+<script>
+
+    document.getElementById("addtrip").addEventListener('click', afterCheckForAvailability);
+  
+  
+    function afterCheckForAvailability() {
+    
+  
+  
+      fetch("routes.json")
+        .then((response_from_api) => response_from_api.json())
+        .then((data_in_json) => {
+          console.log("logging data in json...");
+          console.log(data_in_json);
+          let divToInsert = `<table class="fixed_headers">
+      <thead>
+        <tr>
+          <th>Nameee</th>
+          <th>Color</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+      `;
+  
+  
+          for(i in data_in_json){
+            console.log(data_in_json[i].origin);
+            divToInsert += `<tr>
+                  <td>${data_in_json[i].id}</td>
+                  <td>${data_in_json[i].origin}</td>
+                  <td>${data_in_json[i].destination}</td>
+                </tr>`;
+          }
+  
+          
+          divToInsert += `</tbody>
+        </table>`
+          document.getElementById("all-bookings").innerHTML = divToInsert;
+  
+  
+        })
+  
+  
+  
+  
+    }
+  
+  </script>

@@ -178,3 +178,39 @@ function submitRoute(){
 }
 
 
+
+function doLogin(theEvent){
+    
+    //  going to prevent the page from reloading or
+    // navigating away when you actually submit the form
+    theEvent.preventDefault();
+
+    // extract data from the form.
+    let userFromForm = document.getElementById("username").value;
+    let passwordFromForm = document.getElementById("password").value;
+
+    
+    console.log("test");
+
+
+    fetch('api.php', {
+        method:'POST',
+        body: `action=doLogin&data={username:${userFromForm}, password=${passwordFromForm}}`
+    })
+    .then((response_from_api) => response_from_api.json())
+    .then(data_from_json => {
+        if(data_from_json.success){  
+            window.location.replace("dashboard.html");
+        }
+        else{
+            console.log("api returned false for success, printing the log");
+            console.log(data_from_json);
+            
+            // we can redirect to error page here
+            window.location("error.html");
+         }
+    })
+
+}
+
+
