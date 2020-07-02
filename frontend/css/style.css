@@ -5,6 +5,43 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+header{
+    background-color:#2a3236;
+    color:#ffffff;
+    padding-top:30px;
+    min-height:70px;
+    border-bottom:#e8491d 3px solid;
+}
+
+header a{
+    color:#ffffff;
+    text-decoration:none;
+    text-transform: uppercase;
+    font-size:16px;
+}
+
+header li{
+    display:inline;
+    padding: 0 1rem 0 1rem;
+}
+
+header .highlight, header .current a{
+    color:#e8491d;
+    font-weight:bold;
+
+}
+
+header a:hover{
+    color:#cccccc;
+    font-weight:bold;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+}
+
 #login {
     text-align: center;
 }
@@ -22,7 +59,7 @@
 }
 
 .button{
-    background-color: orangered;
+    background-color: #e8491d;
     color: white;
     height: 2rem;
     width: 5rem;
@@ -74,6 +111,11 @@
     font-size: 2rem;
 }
 
+#faq .fas {
+    color:#e8491d;
+    font-size: 2rem;
+}
+
 .QnA h6 {
     text-align: center;
     margin: auto;
@@ -91,7 +133,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: orangered;
+    background-color: #e8491d;
     height: 10vh;
 }
 
@@ -107,15 +149,15 @@ a .fab:hover {
 }
 
 #footer {
-    background-color: grey;
+    background-color: #2a3236;
     text-align: center;
     height: 30vh;
     color: white;
     font-size: 2rem;
 }
 
-a .fas {
-    color:orangered;
+#contact-container .fas {
+    color:#e8491d;
     width: 3rem;
     margin-bottom: 1.5rem;
     font-size: 2rem;
