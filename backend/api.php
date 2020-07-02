@@ -93,22 +93,22 @@ switch ($action) {
     case "getAllBookings":
         if (!verifySession() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
-        }else if($_SESSION['level'] != "2"){
+        } else if ($_SESSION['level'] != "2") {
             die('{"success":false, "data":"Not admin!"}');
         }
 
         //sql query
         $sql = "";
-        try{
+        try {
             $result = mysqli_query($conn, $sql);
             $rows = array();
-            while($r = mysqli_fetch_assoc($result)){
+            while ($r = mysqli_fetch_assoc($result)) {
                 $id = $r['booking_id'];
                 $rows[$id] = $r;
             }
 
-            echo '{"success":true, "data":' . json_encode($rows) . '}'; 
-        }catch(Exception $e){
+            echo '{"success":true, "data":' . json_encode($rows) . '}';
+        } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
@@ -117,6 +117,31 @@ switch ($action) {
         if (!verifySession() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         }
-        echo '{"success":true, "data":' . json_encode($_SESSION) . '}'; 
+        echo '{"success":true, "data":' . json_encode($_SESSION) . '}';
+        break;
+
+    case "getSingleRouteInfo":
+        if (!verifySession() or $_SESSION["login"] != "true") {
+
+            die('{"success":false, "data":"Not logged in!"}');
+        }
+
+        $submitted_routeid = $data->routeId or die('{"success":false, "data":"data parameter should be in this format {"routeId":routeIdHere}');
+
+        //sql query
+        $sql = "";
+        try {
+            $result =  mysqli_query($conn, $sql);
+            $count = mysqli_num_rows($result);
+            if ($count == 1) {
+                $row = mysqli_fetch_assoc($result);
+                echo '{"success":"true", "data":' . json_encode($row) . '}';
+            } else {
+                die('{"success":false, "data":"Database returned more than one record for this routeId"}');
+            }
+        } catch (Exception $e) {
+            die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
+        }
+
         break;
 }
