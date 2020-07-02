@@ -148,7 +148,7 @@ switch ($action) {
             die('{"success":false, "data":"Not logged in!"}');
         }
 
-        $submitted_routeid = $data->routeId or die('{"success":false, "data":"data parameter should be in this format {"routeId":routeIdHere}');
+        $submitted_routeid = $data->routeId or die('{"success":false, "data":"data parameter should be in this format {\"routeId\":routeIdHere}');
         $user_id = $_SESSION['id'];
 
         //sql query (insert booking, associate the user id with this record)(insert statement)
@@ -166,6 +166,36 @@ switch ($action) {
                 die('{"success":false, "data":"Could not add booking to the database"}');
             }
         } catch (Exception $e) {
+            die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
+        }
+        break;
+
+    case "deleteBooking":
+        if (!verifySession() or $_SESSION["login"] != "true") {
+            die('{"success":false, "data":"Not logged in!"}');
+        } else if ($_SESSION['level'] != "2") {
+            die('{"success":false, "data":"Not admin!"}');
+        }
+
+        $submitted_booking_id = $data->bookingId or die('{"success":false, "data":"data parameter should be in this format {"bookingId":bookingIdHere}');
+
+        //sql query (delete statement) (delete the booking from table bookings)
+        $sql1 = "";
+
+        //sql query (update statement) (increment available seats for the trip associated with this booking)
+        $sql2 = "";
+
+        try{
+            if(mysqli_query($conn,$sql1)){
+                if(mysqli_query($conn,$sql2)){
+                    echo '{"success":"true", "data":""}';
+                }else{
+                    die('{"success":false, "data":"Booking deleted from the database but could not increment available seats for this trip}');
+                }
+            }else{
+                die('{"success":false, "data":"Could not delete booking from the database"}');
+            }
+        }catch(Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
