@@ -8,9 +8,9 @@
 header{
     background-color:#2a3236;
     color:#ffffff;
-    padding-top:30px;
-    min-height:70px;
-    border-bottom:#e8491d 3px solid;
+    padding-top:2rem;
+    min-height:4rem;
+    border-bottom:#e8491d 0.25rem solid;
 }
 
 header a{
@@ -25,7 +25,7 @@ header li{
     padding: 0 1rem 0 1rem;
 }
 
-header .highlight, header .current a{
+header .current a{
     color:#e8491d;
     font-weight:bold;
 
@@ -55,12 +55,12 @@ nav {
     background-size: cover;
     height: 100vh;
     font-size: 4rem;
-    color: white;
+    color: #ffffff;
 }
 
 .button{
     background-color: #e8491d;
-    color: white;
+    color: #ffffff;
     height: 2rem;
     width: 5rem;
     font-weight: bold;
@@ -68,12 +68,12 @@ nav {
 }
 
 .button:hover {
-    background-color: rgb(129, 34, 0);
-    color: rgba(255, 255, 255, 0.664);
+    background-color: #a02c0c;
+    color: #ffffff85;
 }
 
 #services {
-    background-color: white;
+    background-color: #ffffff;
     height: 50vh;
     text-align: center;
     font-size: 2rem;
@@ -90,7 +90,7 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: white;
+    color: #ffffff;
 }
 
 #about-text {
@@ -105,7 +105,7 @@ nav {
 }
 
 #faq {
-    background-color: white;
+    background-color: #ffffff;
     height: 70vh;
     text-align: center;
     font-size: 2rem;
@@ -138,7 +138,7 @@ nav {
 }
 
 a .fab {
-    color:white;
+    color:#ffffff;
     width: 3rem;
     margin-bottom: 1.5rem;
     font-size: 2rem;
@@ -152,7 +152,7 @@ a .fab:hover {
     background-color: #2a3236;
     text-align: center;
     height: 30vh;
-    color: white;
+    color: #ffffff;
     font-size: 2rem;
 }
 
