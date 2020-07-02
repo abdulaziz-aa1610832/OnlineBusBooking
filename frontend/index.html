@@ -9,10 +9,14 @@
 
     <!--To include social media icons at the bottom of the page-->
     <script src="https://kit.fontawesome.com/19d4a4331a.js" crossorigin="anonymous"></script>
+
+    <!--To dynamically change the login form-->
+    <script src="js/index.js"></script>
 </head>
 
 <body>
     <header>
+        <div id="websiteName"><h1>Online Bus Booking</h1></div>
         <nav>
             <ul>
                 <li class="current"><a href="index.html">Home</a></li>
@@ -22,12 +26,24 @@
         </nav>
     </header>
     <div id="main">
-        <h1>Online Bus Booking</h1>
-        <form id="login" action="" method="post">
-            <input type="text" name="username" id="username" placeholder="Username" required>
-            <input type="password" name="password" id="password" placeholder="Password" required></br>
-            <input type="submit" class="button" value="Submit">
+        <div id="box">
+            <form id="login" action="" method="post">
+                <span class="text-center">login</span>
+            <div id="signUpEmail"></div>
+            <div class="input-container">
+                <input type="text" name="username" id="username" required>
+                <label>Username</label>
+            </div>
+            <div class="input-container">		
+                <input type="password" name="password" id="password" required>
+                <label>Password</label>
+            </div>
+            <div id="buttons">
+                <input type="submit" class="btn" value="Login">
+                <button class="btn" onclick="changeToSignUp()">Signup</button>
+            </div>
         </form>
+        </div>
     </div>
 
     <div id="services">
@@ -105,20 +121,19 @@
             <a href=""><i class="fab fa-youtube"></i></a>
         </div>
     </div>
-    <div id="footer">
+    <footer>
         <div id="contact-container">
             <div class="contact">
-                <a href=""><i class="fas fa-phone"></i></a>
+                <i class="fas fa-phone"></i>
                 <p>Call Us Now<br><b>+6011563135992</b></p>
             </div>
             <div class="contact">
-                <a href=""><i class="fas fa-envelope"></i></a>
+                <i class="fas fa-envelope"></i>
                 <p>Or send us a message<br><b>contact@onlinebusbooking.com</b></p>
             </div>
         </div>
         <p>© Online Bus Booking | All Rights reserved 2020</p>
-    </div>
-
+    </footer>
 </body>
 
 </html>

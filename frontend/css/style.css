@@ -4,7 +4,6 @@
     box-sizing: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-
 header{
     background-color:#2a3236;
     color:#ffffff;
@@ -12,40 +11,99 @@ header{
     min-height:4rem;
     border-bottom:#e8491d 0.25rem solid;
 }
-
 header a{
     color:#ffffff;
     text-decoration:none;
     text-transform: uppercase;
     font-size:16px;
 }
-
 header li{
     display:inline;
     padding: 0 1rem 0 1rem;
 }
-
 header .current a{
     color:#e8491d;
     font-weight:bold;
 
 }
-
 header a:hover{
     color:#cccccc;
     font-weight:bold;
 }
-
+#websiteName {
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
 nav {
     display: flex;
     justify-content: space-around;
     margin: 1rem;
 }
-
 #login {
     text-align: center;
 }
-
+.text-center {
+	color:#fff;	
+	text-transform:uppercase;
+    font-size: 1.5rem;
+    margin: -3.125rem 0 5rem 0;
+    display: block;
+    text-align: center;
+}
+#box {
+	position:absolute;
+	left:50%;
+	top:55%;
+	transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.89);
+	border-radius:0.1875rem;
+	padding:4.375rem 6.25rem;
+}
+.input-container {
+	position:relative;
+	margin-bottom:1.5rem;
+}
+.input-container label {
+	position:absolute;
+	top:0;
+	left:0;
+	font-size:1rem;
+    color:#ffffff;	
+    pointer-events:none;
+	transition: all 0.5s ease-in-out;
+}
+.input-container input { 
+  border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:1rem;
+  color:#ffffff;
+}
+.input-container input:focus { 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #e8491d;	
+}
+.btn {
+	color:#ffffff;
+	background-color:#e8491d;
+	outline: none;
+    border: 0;
+    color: #ffffff;
+	padding:0.625rem 1.25rem;
+	text-transform:uppercase;
+	margin-top:3.125rem;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+}
+#haveAnAccount {
+    margin: 2rem;
+    color:#ffffff;
+    font-size:1rem;
+}
 #main {
     display: flex;
     justify-content: center;
@@ -57,7 +115,6 @@ nav {
     font-size: 4rem;
     color: #ffffff;
 }
-
 .button{
     background-color: #e8491d;
     color: #ffffff;
@@ -66,68 +123,57 @@ nav {
     font-weight: bold;
     text-decoration: none;
 }
-
 .button:hover {
     background-color: #a02c0c;
     color: #ffffff85;
 }
-
 #services {
     background-color: #ffffff;
     height: 50vh;
     text-align: center;
     font-size: 2rem;
 }
-
 #about {
     background-image: url(../img/BusBanner.jpg);
     background-size: cover;
     background-position-y: -4rem;
     height: 50vh;
 }
-
 #about-container{
     display: flex;
     justify-content: space-around;
     align-items: center;
     color: #ffffff;
 }
-
 #about-text {
     padding: 3rem;
     width: 50rem;
     font-size: 1rem;
 }
-
 #about-header {
     width: 20rem;
     font-size: 2.5rem;
 }
-
 #faq {
     background-color: #ffffff;
     height: 70vh;
     text-align: center;
     font-size: 2rem;
 }
-
 #faq .fas {
     color:#e8491d;
     font-size: 2rem;
 }
-
 .QnA h6 {
     text-align: center;
     margin: auto;
 }
-
 .QnA p {
     text-align: left;
     width: 50rem;
     margin: auto;
     font-size: 1rem;
 }
-
 #social {
     display: flex;
     justify-content: center;
@@ -136,33 +182,28 @@ nav {
     background-color: #e8491d;
     height: 10vh;
 }
-
 a .fab {
     color:#ffffff;
     width: 3rem;
     margin-bottom: 1.5rem;
     font-size: 2rem;
 }
-
 a .fab:hover {
     color:lightpink;
 }
-
-#footer {
+footer {
     background-color: #2a3236;
     text-align: center;
     height: 30vh;
     color: #ffffff;
     font-size: 2rem;
 }
-
 #contact-container .fas {
     color:#e8491d;
     width: 3rem;
     margin-bottom: 1.5rem;
     font-size: 2rem;
 }
-
 #contact-container {
     padding: 3rem 0 6rem 0;
     display: flex;
