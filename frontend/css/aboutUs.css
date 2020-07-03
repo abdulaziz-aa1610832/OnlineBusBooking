@@ -41,7 +41,7 @@ body{
     transition: 0.4s;
 }
 .card-container-testimon:hover{
-    background: #e8491d;
+    background: burlywood;
 }
 .card-container-testimon i{
     color: #2a3236;
