@@ -266,3 +266,8 @@ footer {
     left: 39rem;
     bottom: 5rem;
 }
+#sorting {
+    position: absolute;
+    left:84rem;
+    font-size: 1.5rem;
+}
