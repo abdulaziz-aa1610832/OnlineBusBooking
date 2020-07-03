@@ -62,7 +62,7 @@ nav {
     display: block;
     text-align: center;
 }
-#box {
+#login-box {
 	position:absolute;
 	left:50%;
 	top:55%;
@@ -214,4 +214,45 @@ footer {
     justify-content: space-evenly;
     align-items: flex-end;
     font-size: 1rem;
+}
+#search-container{
+    display: flex;
+    justify-content: center;
+}
+#search-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color:#ffffff;
+    background-color: rgba(0, 0, 0, 0.89);
+	border-radius:0.1875rem;
+    padding:4rem 3rem;
+    width: 50rem;
+    height:3rem;
+    margin: 8.5rem;
+}
+#after-submit {
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+}
+.trips {
+    border-collapse: collapse;
+    text-align: center;
+    width: 80rem;
+    margin: 3rem;
+}
+.trips th {
+    background-color: #2a3236;
+    color: #ffffff;
+    font-size: 1.5rem;
+    padding: 2rem;
+}
+.trips tr:nth-child(even){
+    background-color: #cebdbd;
+}
+.trips td {
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 2rem;
 }

@@ -25,50 +25,136 @@
     </nav>
   </header>
   <main>
-    <div class="block-text">
-      <h2>BOOK YOUR TICKET</h2>
-    </div>
-    <div>
-      <form id="search-form" action="" method="post" class="trip-form">
-
-        <div class="group-field">
-          <label for="from" class="bold-type">From </label>
-          <select name="from-place" id="from-place-id" maxlength="100">
-            <option value="">Select City</option>
-            <option value="1">Johor Bahru</option>
-            <option value="2">Sabah</option>
-            <option value="3">Kuala Lampur</option>
-            <option value="4">Selangor</option>
-            <option value="5">Melacaa</option>
-          </select>
+    <div id="main-search">
+      <div id="search-container">
+        <div id="search-box">
+          <form id="search-form" action="" method="post" class="trip-form">
+            <label for="from" class="bold-type">From </label>
+            <select name="from-place" id="from-place-id" maxlength="100">
+              <option value="">Select City</option>
+              <option value="1">Johor Bahru</option>
+              <option value="2">Sabah</option>
+              <option value="3">Kuala Lampur</option>
+              <option value="4">Selangor</option>
+              <option value="5">Melacaa</option>
+            </select>
+            <label for="to" class="bold-type">To </label>
+            <select name="to-place" id="to-place-id" maxlength="100">
+              <option value="">Select City</option>
+              <option value="5">Johor Bahru</option>
+              <option value="2">Sabah</option>
+              <option value="4">Kuala Lampur</option>
+              <option value="3">Selangor</option>
+              <option value="1">Melacaa</option>
+            </select>
+            <label for="depart" class="bold-type">Depart on</label>
+            <input placeholder="Pick a date" type="date" name="depart" />
+            <input class="btn" type="button" value="submit" />
+          </form>
         </div>
-        <div class="group-field">
-          <label for="to" class="bold-type">To </label>
-          <select name="to-place" id="to-place-id" maxlength="100">
-            <option value="">Select City</option>
-            <option value="5">Johor Bahru</option>
-            <option value="2">Sabah</option>
-            <option value="4">Kuala Lampur</option>
-            <option value="3">Selangor</option>
-            <option value="1">Melacaa</option>
-          </select>
-        </div>
-        <div class="group-field">
-          <label for="depart" class="bold-type">Depart on</label>
-          <input placeholder="Pick a date" type="date" name="depart" />
-        </div>
-
-
-        <input id="submitbutton" id="search-btn" type="button" value="submit" />
-      </form>
+      </div>
+      <div id="after-submit">
+        <table class="trips">
+          <thead>
+            <tr>
+              <th>Origin</th>
+              <th>Destination</th>
+              <th>Departure Time</th>
+              <th>Price</th>
+              <th>Available Seats</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+            <tr>
+              <td>Johor</td>
+              <td>Kuala Lumpur</td>
+              <td>1:00pm</td>
+              <td>35RM</td>
+              <td>15/40</td>
+            </tr>
+        </table>
+  
+  
+      </div>
     </div>
   </main>
-
-  <div id="after-submit">
-
-
-
-  </div>
 
   <div id="social">
     <div id="social-container">
@@ -115,9 +201,11 @@
         let divToInsert = `<table class="fixed_headers">
     <thead>
       <tr>
-        <th>Nameee</th>
-        <th>Color</th>
-        <th>Description</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Departure Time</th>
+        <th>Price</th>
+        <th>Available Seats</th>
       </tr>
     </thead>
     <tbody>
