@@ -195,7 +195,7 @@ function doLogin(theEvent){
 
     fetch('api.php', {
         method:'POST',
-        body: `action=doLogin&data={username:${userFromForm}, password=${passwordFromForm}}`
+        body: `action=doLogin&data={username:${userFromForm}, "password":${passwordFromForm}}`
     })
     .then((response_from_api) => response_from_api.json())
     .then(data_from_json => {
@@ -214,3 +214,40 @@ function doLogin(theEvent){
 }
 
 
+function registerUser(theEvent){
+    //  going to prevent the page from reloading or
+    // navigating away when you actually submit the form
+    theEvent.preventDefault();
+
+    // extract data from the form.
+    let nameFromForm = document.getElementById("fullName").value;
+    let userFromForm = document.getElementById("username").value;
+    let passwordFromForm = document.getElementById("password").value;
+
+    
+
+
+
+    fetch('api.php', {
+        method:'POST',
+        body: `action=registerUser&data={"name":${nameFromFrom}, “username”:${userFromForm}, “password”: ${passwordFromForm}}`
+    })
+    .then((response_from_api) => response_from_api.json())
+    .then(data_from_json => {
+        if(data_from_json.success){
+            alert("Registration Successful, redirecting to main pagel login...");  
+            window.location.replace("index.html");
+        }
+        else{
+            console.log("api returned false for success, printing the log");
+            console.log(data_from_json);
+            alert("an error happend .");
+            
+            
+            // we can redirect to error page here
+            window.location.replace("error.html");
+         }
+    })
+
+
+}
