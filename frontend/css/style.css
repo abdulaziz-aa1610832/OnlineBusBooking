@@ -36,11 +36,16 @@ header img {
 }
 .profilePic {
     float: left;
-    padding: 0 0 5rem 2rem;
+    padding: 0 0 0 3.5rem;
+}
+.nameOfUser {
+    float: left;
+    margin: 5rem 0 0rem -5.25rem;
 }
 .signOut {
     display: flex;
     justify-content: flex-end;
+    padding: 2rem 0 0 0;
 }
 #websiteName {
     text-align: center;
@@ -249,10 +254,15 @@ footer {
     padding: 2rem;
 }
 .trips tr:nth-child(even){
-    background-color: #cebdbd;
+    background-color: #ecdbb7;
 }
 .trips td {
     font-weight: bold;
     font-size: 1rem;
     padding: 2rem;
+}
+#after-submit input[type="submit"] {
+    position: relative;
+    left: 39rem;
+    bottom: 5rem;
 }
