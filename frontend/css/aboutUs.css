@@ -1,56 +1,81 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+.about-us{
+    background: #f1f1f1;
+    text-align: center;
+}
+.about-us h1{
+    display: inline-block;
+    text-transform: uppercase;
+    border-bottom: 4px solid #2a3236;
+    font-size: 20px;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+.abt-us{
+    background: #2a3236;
+    color: #fff;
+    padding-bottom: 20px;
+}
+.abt-us-container{
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+.card-container-testimon .title {
+    color: grey;
+    font-weight: 500;
+    text-align: center;
+}
+.card-container-testimon{
+    display: inline-block;
+    width: calc(100% / 3);
+    margin: 0 -2px;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.card-container-testimon:hover{
+    background: #e8491d;
+}
+.card-container-testimon i{
+    color: #2a3236;
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+.card-container-testimon h2{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
     margin: 0;
 }
-
-html {
-    box-sizing: border-box;
-}
-
-  *, *:before, *:after {
-    box-sizing: inherit;
-}
-
-.aboutUs-column {
-    float: left;
-    width: 33.3%;
-    margin-bottom: 16px;
-    padding: 0 8px;
-}
-
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 8px;
-}
-
-.about-section {
-    padding: 50px;
-    text-align: center;
-    background-color: #2a3236;
-    color: white;
-}
-
-.card-container {
-    padding: 0 16px;
-}
-
-.card-container::after, .row::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.title {
-    color: grey;
-}
-
-.card .card-container:hover p, .card .card-container:hover h2{
-    color: #e8491d;
-}
-@media screen and (max-width: 650px) {
-.column {
-    width: 70%;
-    display: block;
+.card-container-testimon p{
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+    text-decoration-style: wavy;
     }
+@media screen and (max-width: 800px) {
+.card-container-testimon{
+    width: 60%;
+}
+}
+@media screen and (max-width: 500px) {
+.card-container-testimonUs{
+    width: 100%;
+}
 }
 
+footer {
+    background-color: #2a3236;
+    text-align: center;
+    height: 25vh;
+    color: #ffffff;
+    font-size: 1rem;
+    padding-top: 20px;;
+}
