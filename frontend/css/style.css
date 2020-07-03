@@ -115,7 +115,7 @@ nav {
     background-color:#e8491db9;
     font-weight: bold;
 }
-#haveAnAccount {
+#haveAnAccount a {
     margin: 2rem;
     color:#ffffff;
     font-size:1rem;
