@@ -1,77 +1,103 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Admin Page</title>
-        <link rel="stylesheet" type="text/css" href="css/admin.css">
-        
-    </head>
-    <body>
-        <header>
-        </header>
-        <main>
-            <div id="div-btn" class="admin-buttons">
-                <button id="addtrip">Add Trip</button>
-                <button>Delete Trip</button>
-            </div>
-            <div id="all-bookings">
 
-            </div>
-            test
-        </main>
-        <footer>
+<head>
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
-        </footer>
-    </body>
+</head>
+
+<body onload="afterCheckForAvailability()">
+    <header>
+        <div id="websiteName">
+            <h1>Admin Page of Online Bus Booking</h1>
+        </div>
+
+    </header>
+    <main>
+
+        <div id="tableData" class="things">
+
+        </div>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
 </html>
 
 
 
 <script>
 
-    document.getElementById("addtrip").addEventListener('click', afterCheckForAvailability);
-  
-  
+
+
     function afterCheckForAvailability() {
-    
-  
-  
-      fetch("routes.json")
-        .then((response_from_api) => response_from_api.json())
-        .then((data_in_json) => {
-          console.log("logging data in json...");
-          console.log(data_in_json);
-          let divToInsert = `<table class="fixed_headers">
-      <thead>
-        <tr>
-          <th>Nameee</th>
-          <th>Color</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
+
+
+
+        fetch("routes.json")
+            .then((response_from_api) => response_from_api.json())
+            .then((data_in_json) => {
+                console.log("logging data in json...");
+                console.log(data_in_json);
+                let divToInsert = `<table class="content-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Booking id</th>
+                    <th>Name</th>
+                    <th>Origin</th>
+                    <th>Destination</th>   
+                    <th>Payment</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
       `;
-  
-  
-          for(i in data_in_json){
-            console.log(data_in_json[i].origin);
-            divToInsert += `<tr>
-                  <td>${data_in_json[i].id}</td>
-                  <td>${data_in_json[i].origin}</td>
-                  <td>${data_in_json[i].destination}</td>
-                </tr>`;
-          }
-  
-          
-          divToInsert += `</tbody>
-        </table>`
-          document.getElementById("all-bookings").innerHTML = divToInsert;
-  
-  
-        })
-  
-  
-  
-  
+
+
+                for (i in data_in_json) {
+                    console.log(data_in_json[i]);
+                    if (data_in_json[i].status == "confirmed") {
+
+                        divToInsert += `<tr class="active-row">
+                        <td><input type="radio" id="${data_in_json[i].id}" name="booking" value="${data_in_json[i].id}"></td>
+                        <td>${data_in_json[i].id}</td>
+                        <td>${data_in_json[i].name}</td>
+                        <td>${data_in_json[i].origin}</td>
+                        <td>${data_in_json[i].destination}</td>
+                        <td>${data_in_json[i].payment}</td>
+                        <td>${data_in_json[i].status}</td>
+                    </tr>`;
+                }
+                    else{
+                        divToInsert += `<tr>
+                        <td><input type="radio" id="${data_in_json[i].id}" name="booking" value="${data_in_json[i].id}"></td>
+                        <td>${data_in_json[i].id}</td>
+                        <td>${data_in_json[i].name}</td>
+                        <td>${data_in_json[i].origin}</td>
+                        <td>${data_in_json[i].destination}</td>
+                        <td>${data_in_json[i].payment}</td>
+                        <td>${data_in_json[i].status}</td>
+                    </tr>`;
+                }
+                    }
+                divToInsert += `</tbody>
+        </table>
+        <button type="button">Confirm</button>
+            <button type="button">Delete</button>`
+                document.getElementById("tableData").innerHTML = divToInsert;
+
+
+            })
+
+
+
+
     }
-  
-  </script>
+
+</script>
