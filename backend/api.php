@@ -253,7 +253,7 @@ switch ($action) {
             die('{"success":false, "data":"Not admin!"}');
         }
 
-        $submitted_booking_id = $data->bookingId or die('{"success":false, "data":"data parameter should be in this format {\"bookingId\":bookingIdHere}"}');;
+        $submitted_booking_id = $data->bookingId or die('{"success":false, "data":"data parameter should be in this format {\"bookingId\":bookingIdHere}"}');
 
         //sql query
         $sql = "UPDATE booking SET status = 1 WHERE  bookingid = $submitted_booking_id;";
@@ -269,5 +269,27 @@ switch ($action) {
         }
         break;
     
+    case "registerUser":
+        
+        $submitted_name = $data->name or die('{"success":false, "data":"data parameter should be in this format {\"name\":nameFromFrom, \"username\":userFromForm, \"password\": passwordFromForm, \"phone\":phoneFromForm, \"email\":emailFromForm}"}');
+        $submitted_username = $data->username or die('{"success":false, "data":"data parameter should be in this format {\"name\":nameFromFrom, \"username\":userFromForm, \"password\": passwordFromFormm, \"phone\":phoneFromForm, \"email\":emailFromForm}"}');
+        $submitted_password = $data->password or die('{"success":false, "data":"data parameter should be in this format {\"name\":nameFromFrom, \"username\":userFromForm, \"password\": passwordFromFormm, \"phone\":phoneFromForm, \"email\":emailFromForm}"}');
+        $submitted_phonenumber = $data->phone or die('{"success":false, "data":"data parameter should be in this format {\"name\":nameFromFrom, \"username\":userFromForm, \"password\": passwordFromFormm, \"phone\":phoneFromForm, \"email\":emailFromForm}"}');
+        $submitted_email = $data->email or die('{"success":false, "data":"data parameter should be in this format {\"name\":nameFromFrom, \"username\":userFromForm, \"password\": passwordFromFormm, \"phone\":phoneFromForm, \"email\":emailFromForm}"}');
+        
+        //sql query
+        $sql = "INSERT INTO users VALUES (DEFAULT, '$submitted_name', '$submitted_phonenumber' , '$submitted_email', '$submitted_username', 2, '$submitted_password')";
+
+        try{
+            if(mysqli_query($conn,$sql)){
+                echo '{"success":"true", "data":""}';
+            }else{
+                die('{"success":false, "data":"Could not register user"}');
+            }
+        }catch (Exception $e) {
+            die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
+        }
+
+        break;
 
 }
