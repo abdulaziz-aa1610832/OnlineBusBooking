@@ -176,24 +176,33 @@ switch ($action) {
     case "deleteBooking":
         if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
-        } else if ($_SESSION['level'] != "2") {
+        } else if ($_SESSION['level'] != "1") {
             die('{"success":false, "data":"Not admin!"}');
         }
 
-        $submitted_booking_id = $data->bookingId or die('{"success":false, "data":"data parameter should be in this format {"bookingId":bookingIdHere}');
+        $submitted_booking_id = $data->bookingId or die('{"success":false, "data":"data parameter should be in this format {\"bookingId\":bookingIdHere}"}');
+        //sql query (get route id associated with this booking)
+        $sql1 = "SELECT routeid from booking WHERE bookingid = $submitted_booking_id;";
 
         //sql query (delete statement) (delete the booking from table bookings)
-        $sql1 = "DELETE FROM booking WHERE bookingid = $submitted_booking_id;";
-
-        //sql query (update statement) (increment available seats for the trip associated with this booking)
-        $sql2 = "";
+        $sql2 = "DELETE FROM booking WHERE bookingid = $submitted_booking_id;";
 
         try{
-            if(mysqli_query($conn,$sql1)){
-                if(mysqli_query($conn,$sql2)){
+            $result = mysqli_query($conn,$sql1);
+            if(mysqli_num_rows($result)==1){
+                $r = mysqli_fetch_assoc($result);
+                $route_id = $r['routeid'];
+            }else{
+                die('{"success":false, "data":"Booking doesn not exist"}');
+            }
+            
+            //sql query (update statement) (increment available seats for the trip associated with this booking)
+            $sql3 = "UPDATE routes SET available_seats_count = available_seats_count+1 WHERE  routeid = $route_id;";
+            if(mysqli_query($conn,$sql2)){
+                if(mysqli_query($conn,$sql3)){
                     echo '{"success":"true", "data":""}';
                 }else{
-                    die('{"success":false, "data":"Booking deleted from the database but could not increment available seats for this trip}');
+                    die('{"success":false, "data":"Booking deleted from the database but could not increment available seats for this trip"}');
                 }
             }else{
                 die('{"success":false, "data":"Could not delete booking from the database"}');
