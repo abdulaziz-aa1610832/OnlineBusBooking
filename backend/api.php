@@ -90,28 +90,24 @@ switch ($action) {
         break;
 
     case "getAllBookings":
-        if (!isLoggedIn() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn()) {
             die('{"success":false, "data":"Not logged in!"}');
-        } else if ($_SESSION['level'] != "2") {
+        } else if ($_SESSION['level'] != "1") {
             die('{"success":false, "data":"Not admin!"}');
         }
 
         //sql query (Will get back to this)
-        $sql1 = "SELECT booking.userid, users.username,routes.origin,routes.destination,routes.date FROM booking
+        $sql = "SELECT booking.bookingid,users.fname,users.lname,routes.origin,routes.destination,routes.date,routes.time,booking.payment/*,booking.status*/ FROM booking
         INNER JOIN routes
             ON booking.routeid = routes.routeid
         INNER JOIN  users
             on booking.userid = users.userid;";
         try {
-            $result = mysqli_query($conn, $sql1);
+            $result = mysqli_query($conn, $sql);
             $rows = array();
             while ($r = mysqli_fetch_assoc($result)) {
-                $id = $r['booking_id'];
-                $route_id = $r['route'];
-                $sql2 = "" ; //utilize $route_id to get the route record from the routes table
-                $result2 = mysqli_query($conn,$sql2);
-                $row = mysqli_fetch_assoc($result2);
-                $rows[$id] = $row;
+                $id = $r['bookingid'];
+                $rows[$id] = $r;
             }
 
             echo '{"success":true, "data":' . json_encode($rows) . '}';
