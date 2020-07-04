@@ -155,7 +155,7 @@ switch ($action) {
         $user_id = $_SESSION['id'];
 
         //sql query (insert booking, associate the user id with this record)(insert statement)
-        $sql1 = "INSERT INTO booking VALUES (userid,routeid) VALUES ($user_id,$submitted_routeid);";
+        $sql1 = "INSERT INTO booking VALUES (DEFAULT,$user_id,$submitted_routeid,(SELECT cost from routes where routeid=$submitted_routeid));";
         //sql query (decrement available seats for this route) (update statement)
         $sql2 = "UPDATE routes SET available_seats_count = available_seats_count-1 WHERE  routeid = $submitted_routeid;";
         try {
