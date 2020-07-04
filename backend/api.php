@@ -128,7 +128,7 @@ switch ($action) {
             die('{"success":false, "data":"Not logged in!"}');
         }
 
-        $submitted_routeid = $data->routeId or die('{"success":false, "data":"data parameter should be in this format {"routeId":routeIdHere}');
+        $submitted_routeid = $data->routeId or die('{"success":false, "data":"data parameter should be in this format {\"routeId\":routeIdHere}"}');
 
         //sql query
         $sql = "SELECT * FROM routes WHERE routeid = $submitted_routeid;";
