@@ -97,9 +97,9 @@ switch ($action) {
         }
 
         //sql query (Will get back to this)
-        $sql = "SELECT booking.bookingid,users.fname,users.lname,
+        $sql = "SELECT booking.bookingid,users.name,
                         routes.origin,routes.destination,routes.date,
-                    routes.time,booking.payment/*,booking.status*/
+                    routes.time,booking.payment,booking.status
                 FROM booking
                 INNER JOIN routes
                     ON booking.routeid = routes.routeid
@@ -158,7 +158,7 @@ switch ($action) {
         $user_id = $_SESSION['id'];
 
         //sql query (insert booking, associate the user id with this record)(insert statement)
-        $sql1 = "INSERT INTO booking VALUES (DEFAULT,$user_id,$submitted_routeid,(SELECT cost from routes where routeid=$submitted_routeid));";
+        $sql1 = "INSERT INTO booking VALUES (DEFAULT,$user_id,$submitted_routeid,(SELECT cost from routes where routeid=$submitted_routeid),0);";
         //sql query (decrement available seats for this route) (update statement)
         $sql2 = "UPDATE routes SET available_seats_count = available_seats_count-1 WHERE  routeid = $submitted_routeid;";
         try {
@@ -223,9 +223,9 @@ switch ($action) {
         $user_id = $_SESSION['id'];
 
         //sql query (Select bookings made by the user with $user_id)
-        $sql = "SELECT booking.bookingid,users.fname,users.lname,
+        $sql = "SELECT booking.bookingid,users.name,
                         routes.origin,routes.destination,routes.date,
-                        routes.time,booking.payment/*,booking.status*/
+                        routes.time,booking.payment,booking.status
         FROM booking
         INNER JOIN routes
             ON booking.routeid = routes.routeid
@@ -245,4 +245,5 @@ switch ($action) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
+
 }
