@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2020 at 10:28 PM
+-- Generation Time: Jul 05, 2020 at 12:28 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -41,7 +41,7 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`bookingid`, `userid`, `routeid`, `payment`, `status`) VALUES
 (2, 2, 2, 50, 0),
-(4, 2, 2, 50, 0),
+(4, 2, 2, 50, 1),
 (7, 2, 2, 50, 0);
 
 -- --------------------------------------------------------
@@ -76,9 +76,7 @@ INSERT INTO `routes` (`routeid`, `cost`, `time`, `date`, `origin`, `destination`
 
 CREATE TABLE `users` (
   `userid` int(11) NOT NULL,
-  `name` varchar(60) NOT NULL,
-  `fname` varchar(255) DEFAULT NULL,
-  `lname` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `phonenumber` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `username` varchar(255) NOT NULL,
@@ -90,9 +88,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userid`, `name`, `fname`, `lname`, `phonenumber`, `email`, `username`, `level`, `password`) VALUES
-(1, 'adam bro', 'adam', 'bro', '1234567890', 'adam@bus.com', 'admin', 1, 'admin'),
-(2, 'noob csgotoohard', 'noob', 'csgotoohard', '987654321', 'valisgood@bus.com', 'user', 2, 'user');
+INSERT INTO `users` (`userid`, `name`, `phonenumber`, `email`, `username`, `level`, `password`) VALUES
+(1, 'adam bro', '1234567890', 'adam@bus.com', 'admin', 1, 'admin'),
+(2, 'noob csgotoohard', '987654321', 'valisgood@bus.com', 'user', 2, 'user'),
+(3, 'saeed hashem', '1111111111', 'saeed@bus.com', 'saeed', 2, 'secret'),
+(6, 'test', '11111111', 'test@bus.com', 'test', 2, 'test');
 
 --
 -- Indexes for dumped tables
@@ -116,7 +116,8 @@ ALTER TABLE `routes`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`userid`);
+  ADD PRIMARY KEY (`userid`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -138,7 +139,7 @@ ALTER TABLE `routes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
