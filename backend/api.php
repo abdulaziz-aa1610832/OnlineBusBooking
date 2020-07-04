@@ -2,10 +2,11 @@
 include("database.php");
 
 error_reporting(E_ALL & ~E_NOTICE);
+session_start();
 
-function verifySession()
+function isLoggedIn()
 {
-    if (session_status() == PHP_SESSION_NONE) {
+    if ($_SESSION['login'] != "true") {
         return FALSE;
     } else {
         return TRUE;
@@ -18,7 +19,7 @@ $data = json_decode($_REQUEST['data']) or die('{"success":false, "data":"Paramet
 switch ($action) {
     case "testAction":
         session_start();
-        if (verifySession()) {
+        if (isLoggedIn()) {
             if (isset($_SESSION['username'])) {
                 echo var_dump($_SESSION);
             }
@@ -29,9 +30,7 @@ switch ($action) {
         if (!isset($data->username) or !isset($data->password)) {
             die('{"success":false, "data":"data parameter should be in this format {\"username\":\"foo\", \"password\":\"bar\"}"}');
         }
-        if (!verifySession()) {
-            session_start();
-        } else if ($_SESSION["Login"] == "true") {
+        if (isLoggedIn()) {
             echo '{"success":true, "data":' . json_encode($_SESSION) . '}';
             break;
         }
@@ -66,22 +65,22 @@ switch ($action) {
         break;
 
     case "getRoutesInfo":
-        if (!verifySession() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         }
-        $submitted_origin = $data->origin or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination":\"bar\", \"date\":\"13/13/1313\"}');
-        $submitted_destination = $data->destination or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination":\"bar\", \"date\":\"13/13/1313\"}');
-        $submitted_date = $data->date or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination":\"bar\", \"date\":\"13/13/1313\"}');
+        $submitted_origin = $data->origin or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination\":\"bar\", \"date\":\"13/13/1313\"}"}');
+        $submitted_destination = $data->destination or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination\":\"bar\", \"date\":\"13/13/1313\"}"}');
+        $submitted_date = $data->date or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination":\"bar\", \"date\":\"13/13/1313\"}"}');
 
 
         //sql query ( use the above variable with the select statement in addition to available seatc count is not zero) 
         //Don't care about sql injection :3
-        $sql = "SELECT * FROM routes WHERE origin = $submitted_origin AND destination = $submitted_destination AND date = $submitted_date AND available_seats_count > 0;";
+        $sql = "SELECT * FROM routes WHERE origin = '$submitted_origin' AND destination = '$submitted_destination' AND date = '$submitted_date' AND available_seats_count > 0;";
         try {
             $result = mysqli_query($conn, $sql);
             $rows = array();
             while ($r = mysqli_fetch_assoc($result)) {
-                $id = $r['route_id'];  // id
+                $id = $r['routeid'];  // id
                 $rows[$id] = $r;
             }
             echo '{"success":true, "data":' . json_encode($rows) . '}';
@@ -91,7 +90,7 @@ switch ($action) {
         break;
 
     case "getAllBookings":
-        if (!verifySession() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         } else if ($_SESSION['level'] != "2") {
             die('{"success":false, "data":"Not admin!"}');
@@ -122,14 +121,14 @@ switch ($action) {
         break;
 
     case "getSession":
-        if (!verifySession() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         }
         echo '{"success":true, "data":' . json_encode($_SESSION) . '}';
         break;
 
     case "getSingleRouteInfo":
-        if (!verifySession() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         }
 
@@ -152,7 +151,7 @@ switch ($action) {
         break;
     
     case "submitRoute":
-        if (!verifySession() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         }
 
@@ -179,7 +178,7 @@ switch ($action) {
         break;
 
     case "deleteBooking":
-        if (!verifySession() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         } else if ($_SESSION['level'] != "2") {
             die('{"success":false, "data":"Not admin!"}');
@@ -209,7 +208,7 @@ switch ($action) {
         break;
 
     case "getUserBookings":
-        if (!verifySession() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
         }
 
