@@ -40,7 +40,7 @@ switch ($action) {
         $submitted_password = $data->password;
 
         //sql query
-        $sql = "SELECT * FROM users where username = $submitted_username AND password = $submitted_password LIMIT 1;";
+        $sql = "SELECT * FROM users where username = '$submitted_username' AND password = '$submitted_password' LIMIT 1;";
 
         try {
             $result  = mysqli_query($conn, $sql);
