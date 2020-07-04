@@ -65,7 +65,7 @@ switch ($action) {
         break;
 
     case "getRoutesInfo":
-        if (!isLoggedIn() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn()) {
             die('{"success":false, "data":"Not logged in!"}');
         }
         $submitted_origin = $data->origin or die('{"success":false, "data":"data parameter should be in this format {\"origin\":\"foo\", \"destination\":\"bar\", \"date\":\"13/13/1313\"}"}');
@@ -120,14 +120,14 @@ switch ($action) {
         break;
 
     case "getSession":
-        if (!isLoggedIn() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn()) {
             die('{"success":false, "data":"Not logged in!"}');
         }
         echo '{"success":true, "data":' . json_encode($_SESSION) . '}';
         break;
 
     case "getSingleRouteInfo":
-        if (!isLoggedIn() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn()) {
             die('{"success":false, "data":"Not logged in!"}');
         }
 
@@ -150,7 +150,7 @@ switch ($action) {
         break;
 
     case "submitRoute":
-        if (!isLoggedIn() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn()) {
             die('{"success":false, "data":"Not logged in!"}');
         }
 
