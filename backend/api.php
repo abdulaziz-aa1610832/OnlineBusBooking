@@ -40,7 +40,7 @@ switch ($action) {
         $submitted_password = $data->password;
 
         //sql query
-        $sql = "";
+        $sql = "SELECT * FROM users where username = $submitted_username AND password = $submitted_password LIMIT 1;";
 
         try {
             $result  = mysqli_query($conn, $sql);
@@ -76,7 +76,7 @@ switch ($action) {
 
         //sql query ( use the above variable with the select statement in addition to available seatc count is not zero) 
         //Don't care about sql injection :3
-        $sql = "";
+        $sql = "SELECT * FROM routes WHERE origin = $submitted_origin AND destination = $submitted_destination AND date = $submitted_date AND available_seats_count > 0;";
         try {
             $result = mysqli_query($conn, $sql);
             $rows = array();
@@ -97,8 +97,12 @@ switch ($action) {
             die('{"success":false, "data":"Not admin!"}');
         }
 
-        //sql query
-        $sql1 = "";
+        //sql query (Will get back to this)
+        $sql1 = "SELECT booking.userid, users.username,routes.origin,routes.destination,routes.date FROM booking
+        INNER JOIN routes
+            ON booking.routeid = routes.routeid
+        INNER JOIN  users
+            on booking.userid = users.userid;";
         try {
             $result = mysqli_query($conn, $sql1);
             $rows = array();
@@ -132,7 +136,7 @@ switch ($action) {
         $submitted_routeid = $data->routeId or die('{"success":false, "data":"data parameter should be in this format {"routeId":routeIdHere}');
 
         //sql query
-        $sql = "";
+        $sql = "SELECT * FROM routes WHERE routeid = $submitted_routeid;";
         try {
             $result =  mysqli_query($conn, $sql);
             $count = mysqli_num_rows($result);
@@ -156,9 +160,9 @@ switch ($action) {
         $user_id = $_SESSION['id'];
 
         //sql query (insert booking, associate the user id with this record)(insert statement)
-        $sql1 = "";
+        $sql1 = "INSERT INTO booking VALUES (userid,routeid) VALUES ($user_id,$submitted_routeid);";
         //sql query (decrement available seats for this route) (update statement)
-        $sql2 = "";
+        $sql2 = "UPDATE routes SET available_seats_count = available_seats_count-1 WHERE  routeid = $submitted_routeid;";
         try {
             if(mysqli_query($conn, $sql1)){
                 if(mysqli_query($conn, $sql2)){
@@ -184,7 +188,7 @@ switch ($action) {
         $submitted_booking_id = $data->bookingId or die('{"success":false, "data":"data parameter should be in this format {"bookingId":bookingIdHere}');
 
         //sql query (delete statement) (delete the booking from table bookings)
-        $sql1 = "";
+        $sql1 = "DELETE FROM booking WHERE bookingid = $submitted_booking_id;";
 
         //sql query (update statement) (increment available seats for the trip associated with this booking)
         $sql2 = "";
@@ -212,14 +216,14 @@ switch ($action) {
         $user_id = $_SESSION['id'];
 
         //sql query (Select bookings made by the user with $user_id)
-        $sql1 = "";
+        $sql1 = "SELECT * FROM booking where userid = $user_id;";
         try {
             $result = mysqli_query($conn, $sql1);
             $rows = array();
             while ($r = mysqli_fetch_assoc($result)) {
                 $id = $r['booking_id'];
                 $route_id = $r['route'];
-                $sql2 = "" ; //utilize $route_id to get the route record from the routes table
+                $sql2 = "SELECT * FROM routes WHERE routeid = $route_id;" ; //utilize $route_id to get the route record from the routes table
                 $result2 = mysqli_query($conn,$sql2);
                 $row = mysqli_fetch_assoc($result2);
                 $rows[$id] = $row;
