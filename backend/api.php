@@ -97,11 +97,14 @@ switch ($action) {
         }
 
         //sql query (Will get back to this)
-        $sql = "SELECT booking.bookingid,users.fname,users.lname,routes.origin,routes.destination,routes.date,routes.time,booking.payment/*,booking.status*/ FROM booking
-        INNER JOIN routes
-            ON booking.routeid = routes.routeid
-        INNER JOIN  users
-            on booking.userid = users.userid;";
+        $sql = "SELECT booking.bookingid,users.fname,users.lname,
+                        routes.origin,routes.destination,routes.date,
+                    routes.time,booking.payment/*,booking.status*/
+                FROM booking
+                INNER JOIN routes
+                    ON booking.routeid = routes.routeid
+                INNER JOIN  users
+                    ON booking.userid = users.userid;";
         try {
             $result = mysqli_query($conn, $sql);
             $rows = array();
@@ -145,7 +148,7 @@ switch ($action) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
-    
+
     case "submitRoute":
         if (!isLoggedIn() or $_SESSION["login"] != "true") {
             die('{"success":false, "data":"Not logged in!"}');
@@ -159,13 +162,13 @@ switch ($action) {
         //sql query (decrement available seats for this route) (update statement)
         $sql2 = "UPDATE routes SET available_seats_count = available_seats_count-1 WHERE  routeid = $submitted_routeid;";
         try {
-            if(mysqli_query($conn, $sql1)){
-                if(mysqli_query($conn, $sql2)){
+            if (mysqli_query($conn, $sql1)) {
+                if (mysqli_query($conn, $sql2)) {
                     echo '{"success":"true", "data":""}';
-                }else{
+                } else {
                     die('{"success":false, "data":"Booking added to the database but could not decrement available seats for this trip}');
                 }
-            }else{
+            } else {
                 die('{"success":false, "data":"Could not add booking to the database"}');
             }
         } catch (Exception $e) {
@@ -174,7 +177,7 @@ switch ($action) {
         break;
 
     case "deleteBooking":
-        if (!isLoggedIn() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn()) {
             die('{"success":false, "data":"Not logged in!"}');
         } else if ($_SESSION['level'] != "1") {
             die('{"success":false, "data":"Not admin!"}');
@@ -187,50 +190,54 @@ switch ($action) {
         //sql query (delete statement) (delete the booking from table bookings)
         $sql2 = "DELETE FROM booking WHERE bookingid = $submitted_booking_id;";
 
-        try{
-            $result = mysqli_query($conn,$sql1);
-            if(mysqli_num_rows($result)==1){
+        try {
+            $result = mysqli_query($conn, $sql1);
+            if (mysqli_num_rows($result) == 1) {
                 $r = mysqli_fetch_assoc($result);
                 $route_id = $r['routeid'];
-            }else{
+            } else {
                 die('{"success":false, "data":"Booking doesn not exist"}');
             }
-            
+
             //sql query (update statement) (increment available seats for the trip associated with this booking)
             $sql3 = "UPDATE routes SET available_seats_count = available_seats_count+1 WHERE  routeid = $route_id;";
-            if(mysqli_query($conn,$sql2)){
-                if(mysqli_query($conn,$sql3)){
+            if (mysqli_query($conn, $sql2)) {
+                if (mysqli_query($conn, $sql3)) {
                     echo '{"success":"true", "data":""}';
-                }else{
+                } else {
                     die('{"success":false, "data":"Booking deleted from the database but could not increment available seats for this trip"}');
                 }
-            }else{
+            } else {
                 die('{"success":false, "data":"Could not delete booking from the database"}');
             }
-        }catch(Exception $e) {
+        } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
 
     case "getUserBookings":
-        if (!isLoggedIn() or $_SESSION["login"] != "true") {
+        if (!isLoggedIn()) {
             die('{"success":false, "data":"Not logged in!"}');
         }
 
         $user_id = $_SESSION['id'];
 
         //sql query (Select bookings made by the user with $user_id)
-        $sql1 = "SELECT * FROM booking where userid = $user_id;";
+        $sql = "SELECT booking.bookingid,users.fname,users.lname,
+                        routes.origin,routes.destination,routes.date,
+                        routes.time,booking.payment/*,booking.status*/
+        FROM booking
+        INNER JOIN routes
+            ON booking.routeid = routes.routeid
+        INNER JOIN  users
+            ON booking.userid = users.userid
+        WHERE users.userid = $user_id;";
         try {
-            $result = mysqli_query($conn, $sql1);
+            $result = mysqli_query($conn, $sql);
             $rows = array();
             while ($r = mysqli_fetch_assoc($result)) {
-                $id = $r['booking_id'];
-                $route_id = $r['route'];
-                $sql2 = "SELECT * FROM routes WHERE routeid = $route_id;" ; //utilize $route_id to get the route record from the routes table
-                $result2 = mysqli_query($conn,$sql2);
-                $row = mysqli_fetch_assoc($result2);
-                $rows[$id] = $row;
+                $id = $r['bookingid'];
+                $rows[$id] = $r;
             }
 
             echo '{"success":true, "data":' . json_encode($rows) . '}';
@@ -238,5 +245,4 @@ switch ($action) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
         break;
-
 }
