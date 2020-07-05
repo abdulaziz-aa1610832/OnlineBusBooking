@@ -268,7 +268,9 @@ footer {
 #after-submit input[type="submit"] {
     position: relative;
     left: 39rem;
-    bottom: 5rem;
+    bottom: 4.5rem;
+    padding: 1rem;
+    background-color: #2a3236;
 }
 #sorting {
     position: absolute;
