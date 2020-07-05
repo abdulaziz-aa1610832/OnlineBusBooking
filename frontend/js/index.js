@@ -9,3 +9,6 @@ function changeToSignUp() {
     newSubmitBtn = '<input type="submit" class="btn" value="Submit"><div id="haveAnAccount"><a href="index.html">Have an account?</a></div>';
     document.getElementById("buttons").innerHTML=newSubmitBtn;
 }
+function validateInput() {
+    //will add the implementation
+}
