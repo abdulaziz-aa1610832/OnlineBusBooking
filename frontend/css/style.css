@@ -76,9 +76,13 @@ nav {
 	border-radius:0.1875rem;
 	padding:4.375rem 6.25rem;
 }
+#form-container {
+    display: flex;
+    justify-content: space-around;
+}
 .input-container {
 	position:relative;
-	margin-bottom:1.5rem;
+	margin:1.5rem;
 }
 .input-container label {
 	position:absolute;
