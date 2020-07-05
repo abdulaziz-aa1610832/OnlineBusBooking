@@ -11,13 +11,14 @@
 <body onload="afterCheckForAvailability()">
     <header>
         <div class="profile-container">
-          <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
-          <p>Admin1</p> <!--Put here the admin username, for dashboard, put the user full name-->
+            <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
+            <p>Admin1</p>
+            <!--Put here the admin username, for dashboard, put the user full name-->
         </div>
         <div class="signOut">
-          <button class="btn">sign out</button>
+            <button class="btn">sign out</button>
         </div>
-      </header>
+    </header>
     <main>
 
         <div id="tableData" class="things">
@@ -27,16 +28,16 @@
     </main>
     <div id="social">
         <div id="social-container">
-         
+
         </div>
-      </div>
-    
-      <footer>
+    </div>
+
+    <footer>
         <div id="contact-container">
-          
-          </div>
+
         </div>
-      </footer>
+        </div>
+    </footer>
 </body>
 
 </html>
@@ -85,8 +86,8 @@
                         <td>${data_in_json[i].payment}</td>
                         <td>${data_in_json[i].status}</td>
                     </tr>`;
-                }
-                    else{
+                    }
+                    else {
                         divToInsert += `<tr>
                         <td><input type="radio" id="${data_in_json[i].id}" name="booking" value="${data_in_json[i].id}"></td>
                         <td>${data_in_json[i].id}</td>
@@ -96,8 +97,8 @@
                         <td>${data_in_json[i].payment}</td>
                         <td>${data_in_json[i].status}</td>
                     </tr>`;
-                }
                     }
+                }
                 divToInsert += `</tbody>
         </table>
         <button type="button">Confirm</button>
