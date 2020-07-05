@@ -132,6 +132,9 @@ nav {
     color:#ffffff;
     font-size:1rem;
 }
+#haveAnAccount a:hover {
+    color: #e8491db9;
+}
 #main {
     display: flex;
     justify-content: center;
@@ -279,4 +282,66 @@ footer {
     position: absolute;
     left:84rem;
     font-size: 1.5rem;
+}
+
+/***********about page***********/
+
+#about-main-container {
+    display: flex;
+    justify-content: center;
+}
+#about-main-text {
+    width: 75rem;
+    padding: 0 5rem 5rem 5rem;
+}
+#about-main-text h1{
+    text-align: center;
+    padding: 2rem;
+}
+
+
+.about-us{ /*Will still edit the names of the classes and tweak some stuff to 
+    complete the merge of about.css and style.css*/
+    text-align: center;
+    padding: 0.5rem;
+}
+#testomonial-container {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+.card-container-testimon .title {
+    color: #808080;
+    font-weight: 500;
+    text-align: center;
+}
+.card-container-testimon{
+    display: inline-block;
+    width: calc(100% / 3);
+    margin: 0 -2px;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.card-container-testimon:hover{
+    background: #d1cac1;
+}
+.card-container-testimon i{
+    color: #2a3236;
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+.card-container-testimon h2{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0;
+}
+.card-container-testimon p{
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+    text-decoration-style: wavy;
 }
