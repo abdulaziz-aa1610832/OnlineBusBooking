@@ -3,6 +3,17 @@ window.addEventListener("load", getSession);
 document.getElementById("submitbutton").addEventListener('click', getRoutesInfo);
 
 
+
+// listening to the submit, because it's added dynamically, we need to listen this way..
+document.addEventListener('click',function(e){
+    if(e.target && e.target.id== 'buy-btn'){
+          //do something
+          console.log("submit pressed")
+          submitRoute();
+     }
+ });
+
+
 function sortTicket() {
     var sortingMethod = document.getElementById("sorting").value;
     if (sortingMethod == "price-low-to-high"){
@@ -118,7 +129,6 @@ data: {…}
 */
 
       for (i in data_in_json.data) {
-        console.log(data_in_json.data[i].id);
         divToInsert += `<tr>
               <td>${data_in_json.data[i].date}</td>
               <td>${data_in_json.data[i].origin}</td>
@@ -126,15 +136,16 @@ data: {…}
               <td>${data_in_json.data[i].time}</td>
               <td>${data_in_json.data[i].cost}</td>
               <td>${data_in_json.data[i].available_seats_count}</td>
-              <td><input type="radio" name="tickets" value="${data_in_json.data[i].id}" /></td>
+              <td><input type="radio" name="tickets" value="${data_in_json.data[i].routeid}" /></td>
             </tr>`;
       }
-      console.log("outside the loop");
+
 
 
       divToInsert += `</tbody>
   </table>
-        <input type="submit" class="btn" value="Buy Ticket">
+  <button type="button" class="btn" id="buy-btn">Buy Ticket</button>       
+
       </form>
     `
       document.getElementById("after-submit").innerHTML = divToInsert;
@@ -176,14 +187,15 @@ function submitRoute(){
 
     //  going to prevent the page from reloading or
     // navigating away when you actually submit the form
-    theEvent.preventDefault();
+
 
     let chosenRouteId = "";
     
     // looping through all available radio buttons(routes to choose from)
     // looking for the chosen(checked) one we get it's value(which is techincally 
     // the route id from getRoutesInf() function that we dynamically typed, no we submit the chosen one)
-    let  elements = document.getElementsByTagName('input'); 
+    let  elements = document.getElementsByTagName('input');
+    
       
     for(i = 0; i < elements.length; i++) { 
           
@@ -192,7 +204,10 @@ function submitRoute(){
                 chosenRouteId = elements[i].value;
             }         
         } 
-    } 
+    }
+    
+    console.log("the chose route id is .. ");
+    console.log(chosenRouteId);
 
     fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         method:'POST',
@@ -206,13 +221,14 @@ function submitRoute(){
         
         if(data_from_json.success){
             // the route has been submitted
-            window.location.href = "confirmedBooking.html";
+            console.log("successful");
+           // window.location.href = "confirmedBooking.html";
         }
         else{
             // success was false
-            alert("sometthing wrong happend, logging error to console");
+            console.log("sometthing wrong happend, logging error to console");
             console.log(data_from_json.data);
-            window.location.href = "error.html";
+            //window.location.href = "error.html";
         }
 
     })
