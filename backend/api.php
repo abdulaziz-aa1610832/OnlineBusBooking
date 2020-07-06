@@ -295,7 +295,6 @@ switch ($action) {
     case "doLogout":
         $_SESSION = array();
         session_unset();
-        //setcookie(session_name(), '', time() - 42000);
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(
@@ -309,7 +308,11 @@ switch ($action) {
             );
         }
         session_destroy();
-        var_dump($_SESSION);
+        if($_SESSION == array()){
+            echo '{"success":"true", "data":""}';
+        }else{
+            echo '{"success":"false", "data":"Could not logout!"}';
+        }
         break;
 
 }
