@@ -269,7 +269,7 @@ footer {
     font-size: 1rem;
     padding: 2rem;
 }
-#after-submit input[type="submit"] {
+#after-submit button {
     position: relative;
     left: 39rem;
     bottom: 4.5rem;
