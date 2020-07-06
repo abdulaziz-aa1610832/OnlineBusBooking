@@ -140,7 +140,7 @@ switch ($action) {
             $count = mysqli_num_rows($result);
             if ($count == 1) {
                 $row = mysqli_fetch_assoc($result);
-                echo '{"success":"true", "data":' . json_encode($row) . '}';
+                echo '{"success":true, "data":' . json_encode($row) . '}';
             } else {
                 die('{"success":false, "data":"Database returned more than one record for this routeId"}');
             }
@@ -164,7 +164,7 @@ switch ($action) {
         try {
             if (mysqli_query($conn, $sql1)) {
                 if (mysqli_query($conn, $sql2)) {
-                    echo '{"success":"true", "data":""}';
+                    echo '{"success":true, "data":""}';
                 } else {
                     die('{"success":false, "data":"Booking added to the database but could not decrement available seats for this trip}');
                 }
@@ -203,7 +203,7 @@ switch ($action) {
             $sql3 = "UPDATE routes SET available_seats_count = available_seats_count+1 WHERE  routeid = $route_id;";
             if (mysqli_query($conn, $sql2)) {
                 if (mysqli_query($conn, $sql3)) {
-                    echo '{"success":"true", "data":""}';
+                    echo '{"success":true, "data":""}';
                 } else {
                     die('{"success":false, "data":"Booking deleted from the database but could not increment available seats for this trip"}');
                 }
@@ -260,7 +260,7 @@ switch ($action) {
 
         try{
             if(mysqli_query($conn,$sql)){
-                echo '{"success":"true", "data":""}';
+                echo '{"success":true, "data":""}';
             }else{
                 die('{"success":false, "data":"Could not confirm booking"}');
             }
@@ -282,7 +282,7 @@ switch ($action) {
 
         try{
             if(mysqli_query($conn,$sql)){
-                echo '{"success":"true", "data":""}';
+                echo '{"success":true, "data":""}';
             }else{
                 die('{"success":false, "data":"Could not register user"}');
             }
@@ -309,9 +309,9 @@ switch ($action) {
         }
         session_destroy();
         if($_SESSION == array()){
-            echo '{"success":"true", "data":""}';
+            echo '{"success":true, "data":""}';
         }else{
-            echo '{"success":"false", "data":"Could not logout!"}';
+            echo '{"success":false, "data":"Could not logout!"}';
         }
         break;
 
