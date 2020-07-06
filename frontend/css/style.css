@@ -4,6 +4,9 @@
     box-sizing: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+body {
+    background-color: #f4f4f4;
+}
 header{
     background-color:#2a3236;
     color:#ffffff;
@@ -34,13 +37,13 @@ header img {
     width: 4rem;
     height: 4rem;
 }
-.profilePic {
+.profile-container {
+    text-align: center;
     float: left;
     padding: 0 0 0 3.5rem;
 }
-.nameOfUser {
-    float: left;
-    margin: 5rem 0 0rem -5.25rem;
+.profile-container p {
+    padding: 0.5rem;
 }
 .signOut {
     display: flex;
@@ -76,9 +79,13 @@ nav {
 	border-radius:0.1875rem;
 	padding:4.375rem 6.25rem;
 }
+#form-container {
+    display: flex;
+    justify-content: space-around;
+}
 .input-container {
 	position:relative;
-	margin-bottom:1.5rem;
+	margin:1.5rem;
 }
 .input-container label {
 	position:absolute;
@@ -124,6 +131,9 @@ nav {
     margin: 2rem;
     color:#ffffff;
     font-size:1rem;
+}
+#haveAnAccount a:hover {
+    color: #e8491db9;
 }
 #main {
     display: flex;
@@ -264,10 +274,74 @@ footer {
 #after-submit input[type="submit"] {
     position: relative;
     left: 39rem;
-    bottom: 5rem;
+    bottom: 4.5rem;
+    padding: 1rem;
+    background-color: #2a3236;
 }
 #sorting {
     position: absolute;
     left:84rem;
     font-size: 1.5rem;
+}
+
+/***********about page***********/
+
+#about-main-container {
+    display: flex;
+    justify-content: center;
+}
+#about-main-text {
+    width: 75rem;
+    padding: 0 5rem 5rem 5rem;
+}
+#about-main-text h1{
+    text-align: center;
+    padding: 2rem;
+}
+
+
+.about-us{ /*Will still edit the names of the classes and tweak some stuff to 
+    complete the merge of about.css and style.css*/
+    text-align: center;
+    padding: 0.5rem;
+}
+#testomonial-container {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+.card-container-testimon .title {
+    color: #808080;
+    font-weight: 500;
+    text-align: center;
+}
+.card-container-testimon{
+    display: inline-block;
+    width: calc(100% / 3);
+    margin: 0 -2px;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.card-container-testimon:hover{
+    background: #d1cac1;
+}
+.card-container-testimon i{
+    color: #2a3236;
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+.card-container-testimon h2{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0;
+}
+.card-container-testimon p{
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+    text-decoration-style: wavy;
 }

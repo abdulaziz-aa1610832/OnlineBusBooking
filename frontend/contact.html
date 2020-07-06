@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/contactUs.css">
+
+    <!--To include social media icons at the bottom of the page-->
+    <script src="https://kit.fontawesome.com/19d4a4331a.js" crossorigin="anonymous"></script>
+
+    <!--CSS file-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
 </head>
+
 <body>
+    <header>
+        <div id="websiteName">
+            <h1>Online Bus Booking</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="current"><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
         <h1>Contact US</h1>
-        <p>Got a question? We're here to answer. 
+        <p>Got a question? We're here to answer.
             <br>If you don't see your question here, drop us a line.</p>
         <div class="contact-box">
             <div class="contact-left">
@@ -27,14 +47,14 @@
                             <input type="text" placeholder="Enter your Email">
                         </div>
                     </div>
-                        <div class="input row">
-                            <div class="input-group">
-                                <label>Phone</label>
-                                <input type="text" placeholder="Enter your phone number">
-                            </div>
+                    <div class="input row">
+                        <div class="input-group">
+                            <label>Phone</label>
+                            <input type="text" placeholder="Enter your phone number">
                         </div>
-                        
-                    
+                    </div>
+
+
 
                     <label class="label-class"> Message </label>
                     <textarea name="" id="" rows="10"></textarea>
@@ -59,9 +79,31 @@
                         <td class="col-desc">12, bellaCiao street, skudai, johor bahru</td>
                     </tr>
                 </table>
-
             </div>
         </div>
     </div>
+    <div id="social">
+        <div id="social-container">
+            <a href=""><i class="fab fa-facebook-f"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+            <a href=""><i class="fab fa-linkedin-in"></i></a>
+            <a href=""><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+    <footer>
+        <div id="contact-container">
+            <div class="contact">
+                <i class="fas fa-phone"></i>
+                <p>Call Us Now<br><b>+6011563135992</b></p>
+            </div>
+            <div class="contact">
+                <i class="fas fa-envelope"></i>
+                <p>Or send us a message<br><b>contact@onlinebusbooking.com</b></p>
+            </div>
+        </div>
+        <p>© Online Bus Booking | All Rights Reserved 2020</p>
+    </footer>
 </body>
+
 </html>
