@@ -1,3 +1,5 @@
+// JS functions for the main page
+
 document.getElementById("login")
 .addEventListener('submit', doLogin);
 
@@ -33,7 +35,7 @@ function doLogin(theEvent){
     console.log(passwordFromForm);
     
     console.log("before fetch.. trying to fetch");
-    fetch('http://127.0.0.1/api/backend/api.php', {
+    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -48,10 +50,13 @@ function doLogin(theEvent){
             window.location.replace("dashboard.html");
             console.log("success");
             console.log(data_from_json);
-            if(data_from_json.data.id = "1")
-            {
+            if(data_from_json.data.level = "1"){
                 console.log("admin user");
             }
+            else{
+                console.log("normal user");
+            }
+
             
         }
         else{
@@ -81,7 +86,7 @@ function registerUser(theEvent){
 
 
 
-    fetch('http://127.0.0.1/api/backend/api.php', {
+    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -111,7 +116,7 @@ function registerUser(theEvent){
 
 function getSession(){
 
-    fetch('http://127.0.0.1/api/backend/api.php', {
+    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
