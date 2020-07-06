@@ -3,10 +3,7 @@ body{
     padding: 0;
     font-family: Arial, Helvetica, sans-serif
 }
-.about-us{
-    background: #f1f1f1;
-    text-align: center;
-}
+
 .about-us h1{
     display: inline-block;
     text-transform: uppercase;
@@ -20,12 +17,7 @@ body{
     color: #fff;
     padding-bottom: 20px;
 }
-.abt-us-container{
-    max-width: 1200px;
-    margin: auto;
-    overflow: hidden;
-    padding: 20px;
-}
+
 .card-container-testimon .title {
     color: grey;
     font-weight: 500;
