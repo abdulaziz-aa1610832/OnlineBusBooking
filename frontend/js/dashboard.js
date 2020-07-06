@@ -1,4 +1,6 @@
 document.getElementById("logoutbtn").addEventListener('click', doLogout)
+window.addEventListener("load", getSession);
+
 
 function sortTicket() {
     var sortingMethod = document.getElementById("sorting").value;
@@ -9,8 +11,12 @@ function sortTicket() {
     }
 }
 
+
+
+
 function getSession(){
 
+    console.log("trying to fetch ..");
     fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         method:'POST',
         headers: {
@@ -20,21 +26,17 @@ function getSession(){
     })
     .then((response_from_api) => response_from_api.json() )
     .then((data_from_json) => {
-
+        console.log(data_from_json);
         if(data_from_json.success){
             // we get the session here, we return it as a json object for further use.
-            return JSON.stringify(data_from_json.data);
+            return data_from_json;
         }
         else{
             // session is false
             alert(data_from_json.data);
-            window.location("error.html");
-        }
-
-        
+            //window.location("error.html");
+        }   
     })  
-
-
 }
 
 

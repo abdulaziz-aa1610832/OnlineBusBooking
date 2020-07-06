@@ -4,6 +4,47 @@ document.getElementById("login")
 .addEventListener('submit', doLogin);
 
 
+window.addEventListener("load", getSession);
+
+
+function getSession(){
+
+    console.log("trying to fetch ..");
+    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        body: `action=getSession&data={}`
+    })
+    .then((response_from_api) => response_from_api.json() )
+    .then((data_from_json) => {
+        console.log(data_from_json);
+        if(data_from_json.success){
+            // we get the session here, we return it as a json object for further use.
+            return data_from_json;
+        }
+        else{
+            // session is false
+            alert(data_from_json.data);
+            //window.location("error.html");
+        }   
+    })  
+}
+
+function checkOnLoad(){
+
+    // //let session = getSession();
+    // if(session.loin){
+    //     console.log("user already logged, rediredting..");
+    //     window.location.replace("127.0.0.1/OnlineBusBooking/frontend/dashboard.html");
+    // }
+    // else{
+    //     console.log("user no logged, do nothing..");
+    // }
+
+}
+
 function changeToSignUp() {
     document.forms[0].action="";
     document.forms[0].id="signup";
@@ -20,7 +61,8 @@ function validateInput() {
 }
 
 function doLogin(theEvent){
-    
+
+
     console.log("do login starts..");
     //  going to prevent the page from reloading or
     // navigating away when you actually submit the form
@@ -46,15 +88,16 @@ function doLogin(theEvent){
     .then(data_from_json => {
         console.log("test after response.. converting to json next");
         
-        if(data_from_json.success){  
-            window.location.replace("dashboard.html");
+        if(data_from_json.success){
             console.log("success");
             console.log(data_from_json);
-            if(data_from_json.data.level = "1"){
+            if(data_from_json.data.level == "1"){
                 console.log("admin user");
+                window.location.replace("admin.html");
             }
             else{
                 console.log("normal user");
+                window.location.replace("dashboard.html");
             }
 
             
@@ -114,30 +157,3 @@ function registerUser(theEvent){
 }
 
 
-function getSession(){
-
-    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-        body: `action=getSession&data={}`
-    })
-    .then((response_from_api) => response_from_api.json() )
-    .then((data_from_json) => {
-
-        if(data_from_json.success){
-            // we get the session here, we return it as a json object for further use.
-            return JSON.stringify(data_from_json.data);
-        }
-        else{
-            // session is false
-            alert(data_from_json.data);
-            window.location("error.html");
-        }
-
-        
-    })  
-
-
-}
