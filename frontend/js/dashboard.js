@@ -16,7 +16,7 @@ function sortTicket() {
 
 function getSession(){
 
-    console.log("trying to fetch ..");
+    console.log("trying to fetch session ..");
     fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         method:'POST',
         headers: {
