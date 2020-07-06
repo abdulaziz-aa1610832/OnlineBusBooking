@@ -1,10 +1,6 @@
 // listen to the click, once clicked, perform getUserName function.
 
-document.getElementById("getUser")
-.addEventListener('click', getUsername);
 
-
-console.log(document.getElementById("password").value);
 
 document.getElementById("getRoute")
 .addEventListener('click', getRoutesInfo);
@@ -192,7 +188,7 @@ function doLogin(theEvent){
             //window.location.replace("dashboard.html");
             console.log("success");
             console.log(data_from_json);
-            if()
+        
         }
         else{
             console.log("api returned false for success, printing the log");
