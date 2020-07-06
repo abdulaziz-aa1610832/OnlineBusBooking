@@ -12,7 +12,6 @@
 
     <!--To dynamically change the login form-->
     <script src="js/index.js"></script>
-    <script>document.getElementById("loginBtn").addEventListener('click', console.log("login clicked"));</script>
 </head>
 
 <body>
@@ -30,7 +29,7 @@
     </header>
     <div id="main">
         <div id="login-box">
-            <form id="login" action="" method="post">
+            <form id="login">
                 <span class="text-center">login</span>
                 <div id="form-container">
                     <div id="signUpContent"></div>
@@ -46,7 +45,7 @@
                     </div>
                 </div>
                 <div id="buttons">
-                    <button class="btn" id="loginBtn" value="Login">Login</button>
+                    <input type="submit" id="loginBtn" class="btn" value="Login">
                     <button class="btn" onclick="changeToSignUp()">Signup</button>
                 </div>
             </form>
@@ -141,6 +140,7 @@
         </div>
         <p>© Online Bus Booking | All Rights Reserved 2020</p>
     </footer>
+    <script>document.getElementById("loginBtn").addEventListener('submit', console.log("login clicked"));</script>
 </body>
 
 </html>
