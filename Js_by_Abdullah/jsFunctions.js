@@ -181,6 +181,7 @@ function submitRoute(){
 
 function doLogin(theEvent){
     
+    console.log("do login starts..");
     //  going to prevent the page from reloading or
     // navigating away when you actually submit the form
     theEvent.preventDefault();
@@ -188,30 +189,41 @@ function doLogin(theEvent){
     // extract data from the form.
     let userFromForm = document.getElementById("username").value;
     let passwordFromForm = document.getElementById("password").value;
-
     
-    console.log("test");
-
-
-    fetch('api.php', {
+    console.log("data from form...");
+    console.log(userFromForm);
+    console.log(passwordFromForm);
+    
+    console.log("before fetch.. trying to fetch");
+    fetch('http://127.0.0.1/busbooking/OnlineBusBooking/backend/api.php', {
         method:'POST',
-        body: `action=doLogin&data={username:${userFromForm}, "password":${passwordFromForm}}`
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        body: `action=doLogin&data={"username":"${userFromForm}", "password":"${passwordFromForm}"}`
     })
     .then((response_from_api) => response_from_api.json())
     .then(data_from_json => {
+        console.log("test after response.. converting to json next");
+        
         if(data_from_json.success){  
-            window.location.replace("dashboard.html");
+            //window.location.replace("dashboard.html");
+            console.log("success");
+            console.log(data_from_json);
+            if()
         }
         else{
             console.log("api returned false for success, printing the log");
             console.log(data_from_json);
             
             // we can redirect to error page here
-            window.location("error.html");
+            //window.location.replace("error.html");
          }
     })
+    .catch(err => console.log(err))
 
 }
+
 
 
 function registerUser(theEvent){
