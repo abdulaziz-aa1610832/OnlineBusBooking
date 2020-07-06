@@ -97,7 +97,7 @@ function doLogin(theEvent){
             }
             else{
                 console.log("normal user");
-                window.location.href = "admin.html";
+                window.location.href = "dashboard.html";
             }
 
             

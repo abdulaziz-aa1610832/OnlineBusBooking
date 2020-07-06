@@ -2,6 +2,7 @@ document.getElementById("logoutbtn").addEventListener('click', doLogout)
 window.addEventListener("load", getSession);
 
 
+
 function sortTicket() {
     var sortingMethod = document.getElementById("sorting").value;
     if (sortingMethod == "price-low-to-high"){
