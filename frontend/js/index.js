@@ -93,11 +93,11 @@ function doLogin(theEvent){
             console.log(data_from_json);
             if(data_from_json.data.level == "1"){
                 console.log("admin user");
-                window.location.replace("admin.html");
+                window.location.href = "admin.html";
             }
             else{
                 console.log("normal user");
-                window.location.replace("dashboard.html");
+                window.location.href = "admin.html";
             }
 
             
