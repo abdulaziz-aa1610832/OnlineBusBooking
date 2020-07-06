@@ -45,10 +45,13 @@ header img {
 .profile-container p {
     padding: 0.5rem;
 }
-.signOut {
+.tabs {
     display: flex;
     justify-content: flex-end;
     padding: 2rem 0 0 0;
+}
+#logoutbtn {
+    margin-left: 0.5rem;
 }
 #websiteName {
     text-align: center;
