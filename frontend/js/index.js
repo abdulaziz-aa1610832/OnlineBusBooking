@@ -46,7 +46,6 @@ function checkOnLoad(){
 }
 
 function changeToSignUp() {
-    document.forms[0].action="";
     document.forms[0].id="signup";
     document.forms[0].childNodes[1].innerHTML="Sign Up";
     var newFormContent = '<div class="input-container"><input type="text" name="fullName" id="fullName" required><label>Full Name</label></div>';
