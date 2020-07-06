@@ -18,8 +18,11 @@ document.getElementById("submitRoute")
 
 function getSession(){
 
-    fetch('api.php', {
+    fetch('http://127.0.0.1/busbooking/OnlineBusBooking/backend/api.php', {
         method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
         body: `action=getSession&data={}`
     })
     .then((response_from_api) => response_from_api.json() )
@@ -51,8 +54,11 @@ function getRoutesInfo(){
     let destinationFromForm = document.getElementById("destination").value;
     let dateFromForm = document.getElementById("date-of-travel").value;
 
-    fetch('api.php', {
+    fetch('http://127.0.0.1/busbooking/OnlineBusBooking/backend/api.php', {
         method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
         body: `action=getRoutesInfo&data={"origin":"${originFromForm}", "destination":"${destinationFromForm}", "date":"${dateFromForm}"}`
     })
     .then((response_from_api) => response_from_api.json() )
@@ -75,46 +81,16 @@ function getRoutesInfo(){
 }
 
 
-function doLogin(theEvent){
-    
-    //  going to prevent the page from reloading or
-    // navigating away when you actually submit the form
-    theEvent.preventDefault();
-
-    // extract data from the form.
-    let userFromForm = document.getElementById("username").value;
-    let passwordFromForm = document.getElementById("password").value;
-
-    
-    console.log("test");
-
-
-    fetch('api.php', {
-        method:'POST',
-        body: `action=doLogin&data={username:${userFromForm}, password=${passwordFromForm}}`
-    })
-    .then((response_from_api) => response_from_api.json())
-    .then(data_from_json => {
-        if(data_from_json.success){  
-            window.location.replace("dashboard.html");
-        }
-        else{
-            console.log("api returned false for success, printing the log");
-            console.log(data_from_json);
-            
-            // we can redirect to error page here
-            window.location("error.html");
-         }
-    })
-
-}
 
 
 
 function getSingleRouteInfo(routeNumber){
     
-    fetch(api.php, {
-        method: 'POST',
+    fetch('http://127.0.0.1/busbooking/OnlineBusBooking/backend/api.php', {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
         body: `action=getSingleRouteInfo&data={"routeId":${routeNumber}}`
     })
     .then((response_from_api) => response_from_api.json())
@@ -155,8 +131,11 @@ function submitRoute(){
         } 
     } 
 
-    fetch('api.php', {
+    fetch('http://127.0.0.1/busbooking/OnlineBusBooking/backend/api.php', {
         method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
         body: `action=submitRoute&data={"routeId":${chosenRouteId}}`
     })
     .then((response_from_api) => response_from_api.json())
@@ -240,8 +219,11 @@ function registerUser(theEvent){
 
 
 
-    fetch('api.php', {
+    fetch('http://127.0.0.1/busbooking/OnlineBusBooking/backend/api.php', {
         method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
         body: `action=registerUser&data={"name":${nameFromFrom}, “username”:${userFromForm}, “password”: ${passwordFromForm}}`
     })
     .then((response_from_api) => response_from_api.json())
