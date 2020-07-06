@@ -44,8 +44,39 @@ function getSession(){
 
 function getRoutesInfo(){
 
-    // action=getRoutesInfo&data={"origin":"foo", "destination":"bar", "date":"13/13/1313"}
 
+    `        <select id="sorting" onchange="sortTicket()">
+    <option value="price-low-to-high">Price: Low to High</option>
+    <option value="price-high-to-low">Price: High to Low</option>
+  </select>
+  <form id="buyTicket" action="" method="post">
+    <table class="trips">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Departure Time</th>
+          <th>Price</th>
+          <th>Available Seats</th>
+          <th>Select</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>4/7/2020</td>
+          <td>Johor</td>
+          <td>Kuala Lumpur</td>
+          <td>1:00pm</td>
+          <td>35RM</td>
+          <td>15/40</td>
+          <td><input type="radio" name="tickets" value="" /></td>
+        </tr>
+
+    </table>
+    <input type="submit" class="btn" value="Buy Ticket">
+  </form>
+`
     let originFromForm = document.getElementById("orgin").value;
     let destinationFromForm = document.getElementById("destination").value;
     let dateFromForm = document.getElementById("date-of-travel").value;
@@ -63,6 +94,10 @@ function getRoutesInfo(){
         if(data_from_json.success){
             // we get the all the objects of routes, we return them for further use.
             console.log(data_from_json.data);
+
+            for( i in data_from_json.data){ 
+                console.log(data_from_json.data[i]);
+            }
             return JSON.stringify(data_from_json.data);
         }
         else{
