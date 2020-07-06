@@ -1,6 +1,6 @@
 document.getElementById("logoutbtn").addEventListener('click', doLogout)
 window.addEventListener("load", getSession);
-
+document.getElementById("submitbutton").addEventListener('click', getRoutesInfo);
 
 
 function sortTicket() {
@@ -31,6 +31,7 @@ function getSession(){
         if(data_from_json.success){
             // we get the session here, we return it as a json object for further use.
             return data_from_json;
+            
         }
         else{
             // session is false
@@ -42,74 +43,108 @@ function getSession(){
 
 
 
-function getRoutesInfo(){
+
+function getRoutesInfo() {
+
+  let selectOriginList = document.getElementById("from-place-id");
+  let selectDestinationList = document.getElementById("to-place-id");
 
 
-    `        <select id="sorting" onchange="sortTicket()">
-    <option value="price-low-to-high">Price: Low to High</option>
-    <option value="price-high-to-low">Price: High to Low</option>
-  </select>
-  <form id="buyTicket" action="" method="post">
-    <table class="trips">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Origin</th>
-          <th>Destination</th>
-          <th>Departure Time</th>
-          <th>Price</th>
-          <th>Available Seats</th>
-          <th>Select</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>4/7/2020</td>
-          <td>Johor</td>
-          <td>Kuala Lumpur</td>
-          <td>1:00pm</td>
-          <td>35RM</td>
-          <td>15/40</td>
-          <td><input type="radio" name="tickets" value="" /></td>
-        </tr>
+  let originFromForm = selectOriginList.options[selectOriginList.selectedIndex].text;
+  let destinationFromForm = selectDestinationList.options[selectDestinationList.selectedIndex].text;
+  let dateFromForm = document.getElementById("date-of-travel").value;
+  // 2 0 2 0 - 1 0 - 2 2
+  // 0 1 2 3 4 5 6 7 8 9 10
+  let dateToSubmit = dateFromForm.substring(8);
+  dateToSubmit+="/";
+  dateToSubmit+=dateFromForm.substring(5,7);
+  dateToSubmit+="/";
+  dateToSubmit+=dateFromForm.substring(0,4);
 
-    </table>
-    <input type="submit" class="btn" value="Buy Ticket">
-  </form>
-`
-    let originFromForm = document.getElementById("orgin").value;
-    let destinationFromForm = document.getElementById("destination").value;
-    let dateFromForm = document.getElementById("date-of-travel").value;
+  console.log("before fetch, checking input..");
+  console.log(originFromForm);
+  console.log(destinationFromForm);
+  console.log(dateFromForm);
+  console.log(dateToSubmit);
+  fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: `action=getRoutesInfo&data={"origin":"${originFromForm}", "destination":"${destinationFromForm}", "date":"${dateToSubmit}"}`
+  })
+    .then((response_from_api) => response_from_api.json())
+    .then((data_in_json) => {
+      console.log("logging data in json...");
+      console.log(data_in_json);
+      let divToInsert = `<select id="sorting" onchange="sortTicket()">
+<option value="price-low-to-high">Price: Low to High</option>
+<option value="price-high-to-low">Price: High to Low</option>
+</select>
+<form id="buyTicket" action="" method="post">
+<table class="trips">
+<thead>
+    <tr>
+               <th>Date</th>
+              <th>Origin</th>
+              <th>Destination</th>
+              <th>Departure Time</th>
+              <th>Price</th>
+              <th>Available Seats</th>
+              <th>Select</th>
+    </tr>
+  </thead>
+  <tbody>
+  `;
 
-    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-        body: `action=getRoutesInfo&data={"origin":"${originFromForm}", "destination":"${destinationFromForm}", "date":"${dateFromForm}"}`
+/*
+data: {…}
+​​
+1913: {…}
+​​​
+  available_seats_count: "23"
+  ​​​
+  cost: "51"
+  ​​​
+  date: "22/10/2020"
+  ​​​
+  destination: "Sabah"
+  ​​​
+  origin: "Johor Bahru"
+  ​​​
+  routeid: "1913"
+  ​​​
+  time: "9:30AM"
+*/
+
+      for (i in data_in_json.data) {
+        console.log(data_in_json.data[i].id);
+        divToInsert += `<tr>
+              <td>${data_in_json.data[i].date}</td>
+              <td>${data_in_json.data[i].origin}</td>
+              <td>${data_in_json.data[i].destination}</td>
+              <td>${data_in_json.data[i].time}</td>
+              <td>${data_in_json.data[i].cost}</td>
+              <td>${data_in_json.data[i].available_seats_count}</td>
+              <td><input type="radio" name="tickets" value="${data_in_json.data[i].id}" /></td>
+            </tr>`;
+      }
+      console.log("outside the loop");
+
+
+      divToInsert += `</tbody>
+  </table>
+        <input type="submit" class="btn" value="Buy Ticket">
+      </form>
+    `
+      document.getElementById("after-submit").innerHTML = divToInsert;
+
+
     })
-    .then((response_from_api) => response_from_api.json() )
-    .then((data_from_json) => {
-
-        if(data_from_json.success){
-            // we get the all the objects of routes, we return them for further use.
-            console.log(data_from_json.data);
-
-            for( i in data_from_json.data){ 
-                console.log(data_from_json.data[i]);
-            }
-            return JSON.stringify(data_from_json.data);
-        }
-        else{
-            // success is false, show what happend?
-            alert(data_from_json.data);
-            window.location("error.html");
-        }
-
-        
-    }) 
 
 }
+
+
 
 
 function getSingleRouteInfo(routeNumber){
