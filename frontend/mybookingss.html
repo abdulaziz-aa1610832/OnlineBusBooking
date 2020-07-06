@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Admin Page</title>
+    <title>My Bookings Page</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -13,10 +13,10 @@
     <header>
         <div class="profile-container">
           <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
-          <p>Admin1</p> <!--Put here the admin username, for dashboard, put the user full name-->
+          <p>username</p> <!--Put here the admin username, for dashboard, put the user full name-->
         </div>
         <div class="signOut">
-          <button id="adminLogout" class="btn">sign out</button>
+          <button id="userLogout" class="btn">sign out</button>
         </div>
       </header>
     <main>
@@ -44,4 +44,84 @@
 
 
 
-<script src="js/admin.js"></script>
+<script >
+
+
+window.addEventListener("load", getUserBookings);
+  function getUserBookings(){
+
+    console.log("trying to fetch booking ..");
+    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        body: `action=getUserBookings&data={}`
+    })
+    .then((response_from_api) => response_from_api.json() )
+    .then((data_in_json) => {
+        console.log("logging the json data..")
+        console.log(data_in_json);
+        if(data_in_json.success){
+          let divToInsert = `<table class="content-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Booking id</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Origin</th>
+                <th>Destination</th>   
+                <th>Payment</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+  `;
+            for (i in data_in_json.data) {
+                console.log(data_in_json[i]);
+                if (data_in_json.data[i].status == 1) {
+                    data_in_json.data[i].status = "confirmed";
+                    divToInsert += `<tr class="active-row">
+                    <td><input type="radio" id="${data_in_json.data[i].bookingid}" name="booking" value="${data_in_json.data[i].bookingid}"></td>
+                    <td>${data_in_json.data[i].bookingid}</td>
+                    <td>${data_in_json.data[i].date}</td>
+                    <td>${data_in_json.data[i].name}</td>
+                    <td>${data_in_json.data[i].origin}</td>
+                    <td>${data_in_json.data[i].destination}</td>
+                    <td>${data_in_json.data[i].payment}</td>
+                    <td>${data_in_json.data[i].status}</td>
+                </tr>`;
+            }
+                else{
+                    data_in_json.data[i].status = "pending";
+                    divToInsert += `<tr>
+                    <td><input type="radio" id="${data_in_json.data[i].bookingid}" name="booking" value="${data_in_json.data[i].bookingid}"></td>
+                    <td>${data_in_json.data[i].bookingid}</td>
+                    <td>${data_in_json.data[i].date}</td>
+                    <td>${data_in_json.data[i].name}</td>
+                    <td>${data_in_json.data[i].origin}</td>
+                    <td>${data_in_json.data[i].destination}</td>
+                    <td>${data_in_json.data[i].payment}</td>
+                    <td>${data_in_json.data[i].status}</td>
+                </tr>`;
+            }
+                }
+            divToInsert += `</tbody>
+    </table>
+    `
+            document.getElementById("tableData").innerHTML = divToInsert;
+            } 
+        
+        
+        else{
+            // session is false
+            console.log("session returned false..");
+            alert(data_from_json.data);
+            //window.location("error.html");
+        }   
+    }) 
+
+  }
+
+</script>
