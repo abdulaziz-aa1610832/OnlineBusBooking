@@ -318,12 +318,12 @@ switch ($action) {
     case "sendFeedback":
         $submitted_name = $data->name or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
         $submitted_email = $data->email or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
-        $submitted_phone = $data->$phone or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
-        $submitted_message = $data->$message or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
+        $submitted_phone = $data->phone or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
+        $submitted_message = $data->message or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
 
         //sql query (insert statement)
         $sql = "INSERT INTO feedback (`name`,`email`,`phoneno`,`message`) VALUES 
-                ($submitted_name,$submitted_email,$submitted_phone,$submitted_message);";
+                ('$submitted_name','$submitted_email','$submitted_phone','$submitted_message');";
 
         try{
             if(mysqli_query($conn,$sql)){
@@ -350,7 +350,7 @@ switch ($action) {
             $result = mysqli_query($conn, $sql);
             $rows = array();
             while ($r = mysqli_fetch_assoc($result)) {
-                $id = $r['id'];
+                $id = $r['msgid'];
                 $rows[$id] = $r;
             }
 
