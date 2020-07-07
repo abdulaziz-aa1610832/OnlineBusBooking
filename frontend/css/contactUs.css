@@ -71,16 +71,18 @@ label {
 }
 
 .label-class {
-    margin-top: 20px;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
-button {
+.button {
+    padding: 0.6em;
     background: #e8491d;
-    width: 100px;
+    width: 200px;
     border: none;
     outline: none;
     color: #fff;
-    height: 35px;
+    height: 100px;
     border-radius: 20px;
     margin-top: 30px;
 }
@@ -111,4 +113,8 @@ tr td {
 .col-desc {
     font-size: large;
     font-weight: 800;
+}
+
+#btndiv{
+    margin-top: 1em;
 }

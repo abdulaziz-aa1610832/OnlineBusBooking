@@ -35,30 +35,32 @@
         <div class="contact-box">
             <div class="contact-left">
                 <h3>Send Us s Message</h3>
-                <form action="" class="form-box">
+                <form  class="form-box">
                     <div class="input-row">
                         <div class="input-group">
                             <label>Name</label>
-                            <input type="text" placeholder="Enter your name">
+                            <input type="text" placeholder="Enter your name" id="name">
                         </div>
 
                         <div class="input-group">
                             <label>Email</label>
-                            <input type="text" placeholder="Enter your Email">
+                            <input type="text" placeholder="Enter your Email" id="email">
                         </div>
                     </div>
                     <div class="input row">
                         <div class="input-group">
                             <label>Phone</label>
-                            <input type="text" placeholder="Enter your phone number">
+                            <input type="text" placeholder="Enter your phone number" id="phoneNo">
                         </div>
                     </div>
 
 
 
                     <label class="label-class"> Message </label>
-                    <textarea name="" id="" rows="10"></textarea>
-                    <button type="submit">Submit</button>
+                    <textarea name="" id="message" rows="10"></textarea>
+                    <div id="btndiv">
+                    <a class="button" id="button-submit" >Submit</a>
+                    </div>
                 </form>
             </div>
 
@@ -107,3 +109,6 @@
 </body>
 
 </html>
+
+
+<script src="js/contact.js"></script>
