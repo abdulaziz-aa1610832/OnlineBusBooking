@@ -83,19 +83,15 @@ function changeToSignUp() {
         </div>
     </div>
     <div id="buttons">
-        <input type="submit" class="btn" value="Submit">
+        <button id="register" class="btn">Register</button>
         <div id="haveAnAccount">
             <a href="index.html">Have an account?</a>
         </div>
     </div>
 </form>
    `
-    
    document.getElementById("signup-box").innerHTML = newFormContent;
-
-   
- 
-
+   document.getElementById("signup-box").style.display = "block";
 }
 
 function doLogin(theEvent){

@@ -82,6 +82,9 @@ nav {
 	border-radius:0.1875rem;
 	padding:4.375rem 6.25rem;
 }
+#signup-box {
+    display: none;
+}
 #form-container {
     display: flex;
     justify-content: space-around;
