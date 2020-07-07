@@ -10,6 +10,14 @@ document.addEventListener('click',function(e){
           confirmBooking();
           
      }
+
+
+     if(e.target && e.target.id == 'delete-btn'){
+        //do something
+        console.log("delete pressed")
+        deleteBooking();
+        
+   }
  });
 
 
@@ -196,6 +204,58 @@ function confirmBooking(){
         if(data_from_json.success){
             // the route has been submitted
             console.log("successful");
+            location.reload();
+           // window.location.href = "confirmedBooking.html";
+        }
+        else{
+            // success was false
+            console.log("sometthing wrong happend, logging error to console");
+            console.log(data_from_json.data);
+            //window.location.href = "error.html";
+        }
+
+    })
+}
+
+
+
+function deleteBooking(){
+    //action=deleteBooking&data={“bookingId”:id_here}
+
+    let chosenRouteId = "";
+    
+    // looping through all available radio buttons(routes to choose from)
+    // looking for the chosen(checked) one we get it's value(which is techincally 
+    // the route id from getRoutesInf() function that we dynamically typed, no we submit the chosen one)
+    let  elements = document.getElementsByTagName('input');
+    
+      
+    for(i = 0; i < elements.length; i++) { 
+          
+        if(elements[i].type="radio") { 
+            if(elements[i].checked){
+                chosenRouteId = elements[i].value;
+            }         
+        } 
+    }
+    
+    console.log("the chose route id is .. ");
+    console.log(chosenRouteId);
+
+    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        body: `action=deleteBooking&data={"bookingId":${chosenRouteId}}`
+    })
+    .then((response_from_api) => response_from_api.json())
+    .then(data_from_json => {
+        
+        if(data_from_json.success){
+            // the route has been submitted
+            console.log("successful");
+            alert("succesully delete");
             location.reload();
            // window.location.href = "confirmedBooking.html";
         }
