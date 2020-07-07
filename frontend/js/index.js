@@ -4,7 +4,7 @@ document.getElementById("loginBtn")
 .addEventListener('click', doLogin);
 
 document.getElementById("signupbtn")
-.addEventListener('click', changeToSignUp)
+.addEventListener('click', changeToSignUp);
 
 window.addEventListener("load", getSession);
 
@@ -48,41 +48,46 @@ function checkOnLoad(){
 }
 
 function changeToSignUp() {
-    
-    let div = document.getElementById("login-box");
-    div.style.display = "none";
     console.log("sign up clicked..");
+    document.getElementById("login-box").style.display = "none";
     let emailRegex = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;";
     let passwordRegex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$";
     let newFormContent = `
-
-    <form id="theSignUpForm>
-    <div class="input-container">
-        <input type="text" name="username" id="new-username" required>
-        <label>Username</label>
+    <form id="signup">
+    <span class="text-center">Sign Up</span>
+    <div id="form-container">
+        <div>
+            <div class="input-container">
+                <input type="text" name="fullName" id="fullName" required>
+                <label>Full Name</label>
+            </div>
+            <div class="input-container">
+                <input type="email" name="email" id="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-container"><input type="text" name="phoneNo" id="phoneNo" pattern="01[0-9]{8}"
+                    title="Format: 01xxxxxxxx (Length: 10 digits)" required>
+                <label>Phone Number</label>
+            </div>
+        </div>
+        <div>
+            <div class="input-container">
+                <input type="text" name="username" id="username" required>
+                <label>Username</label>
+            </div>
+            <div class="input-container" id="passwordSection">
+                <input type="password" name="password" id="password" required>
+                <label>Password</label>
+            </div>
+        </div>
     </div>
-    <div class="input-container" id="passwordSection">
-        <input type="password" name="password" id="new-password" required>
-        <label>Password</label>
+    <div id="buttons">
+        <input type="submit" class="btn" value="Submit">
+        <div id="haveAnAccount">
+            <a href="index.html">Have an account?</a>
+        </div>
     </div>
-
-    <div class="input-container">
-    <input type="text" name="fullName" id="new-fullName" required><label>Full Name</label>
-    </div>'
-
-   <div class="input-container">
-   <input type="email" name="email" id="new-email" required><label>Email</label>
-   </div>
-
-   <div class="input-container">
-   <input type="text" name="phoneNo" id="new-phoneNo" pattern="01[0-9]{8}" title="Format: 01xxxxxxxx (Length: 10 digits)" required><label>Phone Number</label>
-   </div>
-
-   <input type="submit" class="btn" value="Submit">
-   
-   <div id="haveAnAccount"><a href="index.html">Have an account?</a></div>
-   </form>
-   
+</form>
    `
     
    document.getElementById("signup-box").innerHTML = newFormContent;

@@ -73,7 +73,7 @@ nav {
     display: block;
     text-align: center;
 }
-#login-box {
+#login-box, #signup-box {
 	position:absolute;
 	left:50%;
 	top:55%;
@@ -284,7 +284,6 @@ footer {
     left:84rem;
     font-size: 1.5rem;
 }
-
 #about-main-container {
     display: flex;
     justify-content: center;
@@ -297,8 +296,6 @@ footer {
     text-align: center;
     padding: 2rem;
 }
-
-
 .about-us{ /*Will still edit the names of the classes and tweak some stuff to 
     complete the merge of about.css and style.css*/
     text-align: center;
