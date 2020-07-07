@@ -24,7 +24,7 @@ switch ($action) {
                 echo var_dump($_SESSION);
             }
         }
-        break;
+    break;
 
     case "doLogin":
         if (!isset($data->username) or !isset($data->password)) {
@@ -62,7 +62,7 @@ switch ($action) {
         } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
-        break;
+    break;
 
     case "getRoutesInfo":
         if (!isLoggedIn()) {
@@ -87,7 +87,7 @@ switch ($action) {
         } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
-        break;
+    break;
 
     case "getAllBookings":
         if (!isLoggedIn()) {
@@ -124,7 +124,7 @@ switch ($action) {
             die('{"success":false, "data":"Not logged in!"}');
         }
         echo '{"success":true, "data":' . json_encode($_SESSION) . '}';
-        break;
+    break;
 
     case "getSingleRouteInfo":
         if (!isLoggedIn()) {
@@ -147,7 +147,7 @@ switch ($action) {
         } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
-        break;
+    break;
 
     case "submitRoute":
         if (!isLoggedIn()) {
@@ -174,7 +174,7 @@ switch ($action) {
         } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
-        break;
+    break;
 
     case "deleteBooking":
         if (!isLoggedIn()) {
@@ -213,7 +213,7 @@ switch ($action) {
         } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
-        break;
+    break;
 
     case "getUserBookings":
         if (!isLoggedIn()) {
@@ -244,7 +244,7 @@ switch ($action) {
         } catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
-        break;
+    break;
 
     case "confirmBooking":
         if (!isLoggedIn()) {
@@ -267,7 +267,7 @@ switch ($action) {
         }catch (Exception $e) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
-        break;
+    break;
     
     case "registerUser":
         
@@ -290,7 +290,7 @@ switch ($action) {
             die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
         }
 
-        break;
+    break;
     
     case "doLogout":
         $_SESSION = array();
@@ -313,6 +313,50 @@ switch ($action) {
         }else{
             echo '{"success":false, "data":"Could not logout!"}';
         }
-        break;
+    break;
+    
+    case "sendFeedback":
+        $submitted_name = $data->name or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
+        $submitted_email = $data->email or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
+        $submitted_phone = $data->$phone or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
+        $submitted_message = $data->$message or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
+
+        //sql query (insert statement)
+        $sql = "";
+
+        try{
+            if(mysqli_query($conn,$sql)){
+                echo '{"success":true, "data":""}';
+            }else{
+                echo '{"success":false, "data":"Could not send feedback!"}';
+            }
+        }catch (Exception $e) {
+            die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
+        }
+    break;
+
+    case "getFeedback":
+        if (!isLoggedIn()) {
+            die('{"success":false, "data":"Not logged in!"}');
+        } else if ($_SESSION['level'] != "1") {
+            die('{"success":false, "data":"Not admin!"}');
+        }
+
+        //sql query (select statement)
+        $sql = "";
+
+        try {
+            $result = mysqli_query($conn, $sql);
+            $rows = array();
+            while ($r = mysqli_fetch_assoc($result)) {
+                $id = $r['id'];
+                $rows[$id] = $r;
+            }
+
+            echo '{"success":true, "data":' . json_encode($rows) . '}';
+        } catch (Exception $e) {
+            die('{"success":false, "data":"Unknown error -> ' . str_replace('"', '\"', $e->getMessage()) . '"}');
+        }
+    break;
 
 }
