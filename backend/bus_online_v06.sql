@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `bus_online`
 --
-
+CREATE DATABASE IF NOT EXISTS `bus_online` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bus_online`;
 -- --------------------------------------------------------
 
 --
