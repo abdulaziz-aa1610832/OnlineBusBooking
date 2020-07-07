@@ -305,11 +305,8 @@ function getFeedback(){
   `;
             for (i in data_in_json.data) {
                 console.log(data_in_json[i]);
-                if (data_in_json.data[i].status == 1) {
                     data_in_json.data[i].status = "confirmed";
                     divToInsert += `<tr class="active-row">
-                    <td><input type="radio" id="${data_in_json.data[i].bookingid}" name="booking" value="${data_in_json.data[i].bookingid}"></td>
-                    <td>${data_in_json.data[i].bookingid}</td>
                     <td>${data_in_json.data[i].date}</td>
                     <td>${data_in_json.data[i].name}</td>
                     <td>${data_in_json.data[i].origin}</td>
@@ -317,21 +314,10 @@ function getFeedback(){
                     <td>${data_in_json.data[i].payment}</td>
                     <td>${data_in_json.data[i].status}</td>
                 </tr>`;
+            
+            
             }
-                else{
-                    data_in_json.data[i].status = "pending";
-                    divToInsert += `<tr>
-                    <td><input type="radio" id="${data_in_json.data[i].bookingid}" name="booking" value="${data_in_json.data[i].bookingid}"></td>
-                    <td>${data_in_json.data[i].bookingid}</td>
-                    <td>${data_in_json.data[i].date}</td>
-                    <td>${data_in_json.data[i].name}</td>
-                    <td>${data_in_json.data[i].origin}</td>
-                    <td>${data_in_json.data[i].destination}</td>
-                    <td>${data_in_json.data[i].payment}</td>
-                    <td>${data_in_json.data[i].status}</td>
-                </tr>`;
-            }
-                }
+                
             divToInsert += `</tbody>
     </table>
     <button type="button" id="confirm-btn">Confirm</button>

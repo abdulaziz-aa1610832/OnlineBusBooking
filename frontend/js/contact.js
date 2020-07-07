@@ -32,7 +32,7 @@ function sendFeedback(){
             if(data_from_json.success){
                 console.log("succes: " + data_from_json)
                 alert("Thank you for your feedback, we will reach out to you soon.");  
-                //window.location.replace("index.html");
+                window.location.replace("index.html");
             }
             else{
                 console.log("api returned false for success, printing the log");
