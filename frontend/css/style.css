@@ -125,7 +125,8 @@ nav {
 	margin-top:3.125rem;
 	border-radius:2px;
 	cursor:pointer;
-	position:relative;
+    position:relative;
+   
 }
 .btn:hover {
     background-color:#e8491db9;

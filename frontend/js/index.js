@@ -7,16 +7,6 @@ document.getElementById("signupbtn")
 .addEventListener('click', changeToSignUp);
 
 
-document.getElementById("signup").addEventListener('submit', console.log("submit press lah"));
-
-// listening to the submit, because it's added dynamically, we need to listen this way..
-document.addEventListener('submit', function (e) {
-    if (e.target && e.target.id == 'signup') {
-        //do something
-        console.log("submit pressed")
-        //submitRoute();
-    }
-});
 
 window.addEventListener("load", getSession);
 
@@ -36,11 +26,13 @@ function getSession(){
         console.log(data_from_json);
         if(data_from_json.success){
             // we get the session here, we return it as a json object for further use.
+            window.location.href = "dashboard.html";
             return data_from_json;
         }
         else{
+            console.log("user is not logged in..");
             // session is false
-            alert(data_from_json.data);
+            //alert(data_from_json.data);
             //window.location("error.html");
         }   
     })  
@@ -54,7 +46,7 @@ function changeToSignUp() {
     let emailRegex = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;";
     let passwordRegex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$";
     let newFormContent = `
-    <form id="signup">
+    <form id="signupForm">
     <span class="text-center">Sign Up</span>
     <div id="form-container">
         <div>
@@ -83,7 +75,8 @@ function changeToSignUp() {
         </div>
     </div>
     <div id="buttons">
-        <button id="register" class="btn">Register</button>
+     
+        <a class="btn" onclick="registerUser()" id="regbtn">Register</a>
         <div id="haveAnAccount">
             <a href="index.html">Have an account?</a>
         </div>
@@ -149,13 +142,11 @@ function doLogin(theEvent){
 }
 
 
-function registerUser(theEvent){
-    //  going to prevent the page from reloading or
-    // navigating away when you actually submit the form
-    theEvent.preventDefault();
+function registerUser(){
 
-    // action=registerUser&data={"name":nameFromFrom, "username":userFromForm, 
-    //"password": passwordFromForm, "phone":phoneFromForm, "email":emailFromForm}"}
+
+    console.log("start register user..")
+
 
     // extract data from the form.
     let nameFromForm = document.getElementById("fullName").value;
@@ -166,24 +157,25 @@ function registerUser(theEvent){
 
 
     console.log("logging data to be submitted..");
-    console.log(userFromForm);
-    console.log(nameFromForm);
+    console.log("user: " + userFromForm);
+    console.log("name: "+ nameFromForm);
     console.log(passwordFromForm);
     console.log(emailFromForm);
     console.log(phoneFromForm);
 
-    /*
+    
     fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
-        body: `action=registerUser&data={"name":${nameFromFrom}, “username”:${userFromForm}, “password”: ${passwordFromForm}}`
+        body: `action=registerUser&data={"name":"${nameFromForm}", "username":"${userFromForm}", "password": "${passwordFromForm}", "phone":"${phoneFromForm}", "email":"${emailFromForm}"}`
     })
     .then((response_from_api) => response_from_api.json())
     .then(data_from_json => {
         if(data_from_json.success){
-            alert("Registration Successful, redirecting to main pagel login...");  
+            console.log("succes: " + data_from_json)
+            alert("Registration Successful, redirecting to main page so u can  login...");  
             window.location.replace("index.html");
         }
         else{
@@ -196,7 +188,7 @@ function registerUser(theEvent){
             window.location.replace("error.html");
          }
     })
-*/
+
 
 }
 
