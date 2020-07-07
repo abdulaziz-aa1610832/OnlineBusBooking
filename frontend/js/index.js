@@ -1,8 +1,10 @@
 // JS functions for the main page
 
-document.getElementById("login")
-.addEventListener('submit', doLogin);
+document.getElementById("loginBtn")
+.addEventListener('click', doLogin);
 
+document.getElementById("signupbtn")
+.addEventListener('click', changeToSignUp)
 
 window.addEventListener("load", getSession);
 
@@ -46,19 +48,48 @@ function checkOnLoad(){
 }
 
 function changeToSignUp() {
-    document.forms[0].id="signup";
-    document.forms[0].name="signup";
-    document.forms[0].childNodes[1].innerHTML="Sign Up";
-    //let emailRegex = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;";
-    let newFormContent = '<div class="input-container"><input type="text" name="fullName" id="fullName" required><label>Full Name</label></div>';
-    newFormContent += '<div class="input-container"><input type="email" name="email" id="email" required><label>Email</label></div>';;
-    newFormContent += '<div class="input-container"><input type="text" name="phoneNo" id="phoneNo" pattern="01[0-9]{8}" title="Format: 01xxxxxxxx (Length: 10 digits)" required><label>Phone Number</label></div>';
-    document.getElementById("signUpContent").innerHTML= newFormContent;
-    let newSubmitBtn = '<input type="submit" class="btn" value="Submit"><div id="haveAnAccount"><a href="index.html">Have an account?</a></div>';
-    document.getElementById("buttons").innerHTML=newSubmitBtn;
-    //let passwordRegex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$";
-    let passwordWithInputValidation = '<input type="password" name="password" id="password" minlength="8" required><label>Password</label>';
-    document.getElementById("passwordSection").innerHTML=passwordWithInputValidation;
+    
+    let div = document.getElementById("login-box");
+    div.style.display = "none";
+    console.log("sign up clicked..");
+    let emailRegex = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;";
+    let passwordRegex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$";
+    let newFormContent = `
+
+    <form id="theSignUpForm>
+    <div class="input-container">
+        <input type="text" name="username" id="new-username" required>
+        <label>Username</label>
+    </div>
+    <div class="input-container" id="passwordSection">
+        <input type="password" name="password" id="new-password" required>
+        <label>Password</label>
+    </div>
+
+    <div class="input-container">
+    <input type="text" name="fullName" id="new-fullName" required><label>Full Name</label>
+    </div>'
+
+   <div class="input-container">
+   <input type="email" name="email" id="new-email" required><label>Email</label>
+   </div>
+
+   <div class="input-container">
+   <input type="text" name="phoneNo" id="new-phoneNo" pattern="01[0-9]{8}" title="Format: 01xxxxxxxx (Length: 10 digits)" required><label>Phone Number</label>
+   </div>
+
+   <input type="submit" class="btn" value="Submit">
+   
+   <div id="haveAnAccount"><a href="index.html">Have an account?</a></div>
+   </form>
+   
+   `
+    
+   document.getElementById("signup-box").innerHTML = newFormContent;
+
+   
+ 
+
 }
 
 function doLogin(theEvent){
@@ -121,15 +152,25 @@ function registerUser(theEvent){
     // navigating away when you actually submit the form
     theEvent.preventDefault();
 
+    // action=registerUser&data={"name":nameFromFrom, "username":userFromForm, 
+    //"password": passwordFromForm, "phone":phoneFromForm, "email":emailFromForm}"}
+
     // extract data from the form.
     let nameFromForm = document.getElementById("fullName").value;
     let userFromForm = document.getElementById("username").value;
     let passwordFromForm = document.getElementById("password").value;
+    let emailFromForm = document.getElementById("email").value;
+    let phoneFromForm = document.getElementById("phoneNo").value;
 
-    
 
+    console.log("logging data to be submitted..");
+    console.log(userFromForm);
+    console.log(nameFromForm);
+    console.log(passwordFromForm);
+    console.log(emailFromForm);
+    console.log(phoneFromForm);
 
-
+    /*
     fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         method:'POST',
         headers: {
@@ -153,7 +194,7 @@ function registerUser(theEvent){
             window.location.replace("error.html");
          }
     })
-
+*/
 
 }
 
