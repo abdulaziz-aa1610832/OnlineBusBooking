@@ -146,7 +146,7 @@ ALTER TABLE `users`
 -- Index for table `feedback`
 --
 ALTER TABLE `feedback`
-  ADD PRIMARY KEY (`msgid`)
+  ADD PRIMARY KEY (`msgid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -173,7 +173,7 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for table `feedback`
 --
-ALTER TABLE `users`
+ALTER TABLE `feedback`
   MODIFY `msgid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
