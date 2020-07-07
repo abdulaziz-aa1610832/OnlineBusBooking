@@ -50,7 +50,7 @@ header img {
     justify-content: flex-end;
     padding: 2rem 0 0 0;
 }
-#logoutbtn {
+#logoutbtn, #feedback {
     margin-left: 0.5rem;
 }
 #websiteName {
@@ -254,27 +254,27 @@ footer {
     height:3rem;
     margin: 8.5rem;
 }
-#after-submit {
+#after-submit, #feedback-container {
     display: flex;
     justify-content: center;
     align-self: flex-start;
 }
-.trips {
+.trips, .feedback-table {
     border-collapse: collapse;
     text-align: center;
     width: 80rem;
     margin: 3rem;
 }
-.trips th {
+.trips th, .feedback-table th {
     background-color: #2a3236;
     color: #ffffff;
     font-size: 1.5rem;
     padding: 2rem;
 }
-.trips tr:nth-child(even){
+.trips tr:nth-child(even), .feedback-table tr:nth-child(even){
     background-color: #ecdbb7;
 }
-.trips td {
+.trips td, .feedback-table td {
     font-weight: bold;
     font-size: 1rem;
     padding: 2rem;
@@ -290,6 +290,12 @@ footer {
     position: absolute;
     left:84rem;
     font-size: 1.5rem;
+}
+.emailMessage, .senderName {
+    text-align: left;
+}
+.senderName {
+    width: 8rem;
 }
 #about-main-container {
     display: flex;
