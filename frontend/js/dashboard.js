@@ -200,7 +200,7 @@ function submitRoute() {
             if (data_from_json.success) {
                 // the route has been submitted
                 console.log("successful");
-                // window.location.href = "confirmedBooking.html";
+                window.location.replace("submitted.html");
             }
             else {
                 // success was false
