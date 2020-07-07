@@ -116,7 +116,8 @@ CREATE TABLE `feedback` (
 INSERT INTO `feedback`(`msgid`,`name`,`email`,`phoneno`,`message`) VALUES
 (1,'Mummar Gaddafi','gaddafi@libya.com','0000000000','ZENGA ZENGA DAR DAR'),
 (2,'Pewdiepie','pewdiepie@youtube.com','1111111111','FLOOR GANG'),
-(4,'Francis Underwood', 'president@whitehouse.com','1234567890','The presidency is mine! **knock on wood**');
+(4,'Francis Underwood', 'president@whitehouse.com','1234567890','The presidency is mine! **knock on wood**'),
+(5, 'omen', 'omen@bind.valorant.com', '000000000', 'I am not just a shadow!');
 
 --
 -- Indexes for dumped tables
