@@ -13,7 +13,7 @@
     <header>
         <div class="profile-container">
           <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
-          <p>username</p> <!--Put here the admin username, for dashboard, put the user full name-->
+          <p id="userNamePic"></p> <!--Put here the admin username, for dashboard, put the user full name-->
         </div>
         <div class="tabs">
           <button id="userLogout" class="btn">sign out</button>
@@ -48,7 +48,38 @@
 
 
 window.addEventListener("load", getUserBookings);
-  function getUserBookings(){
+window.addEventListener("load", getSession);  
+function getSession() {
+
+console.log("trying to fetch session ..");
+fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: `action=getSession&data={}`
+})
+    .then((response_from_api) => response_from_api.json())
+    .then((data_from_json) => {
+        console.log(data_from_json);
+        if (data_from_json.success) {
+            // we get the session here, we return it as a json object for further use.
+            
+            document.getElementById("userNamePic").innerHTML = `${data_from_json.data.username}`;
+            return data_from_json;
+
+        }
+        else {
+            // session is false
+            alert(data_from_json.data);
+            //window.location("error.html");
+        }
+    })
+}
+
+
+
+function getUserBookings(){
 
     console.log("trying to fetch booking ..");
     fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {

@@ -35,6 +35,8 @@ function getSession() {
             console.log(data_from_json);
             if (data_from_json.success) {
                 // we get the session here, we return it as a json object for further use.
+                
+                document.getElementById("userNamePic").innerHTML = `${data_from_json.data.username}`;
                 return data_from_json;
 
             }

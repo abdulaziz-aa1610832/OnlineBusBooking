@@ -6,6 +6,18 @@ document.getElementById("loginBtn")
 document.getElementById("signupbtn")
 .addEventListener('click', changeToSignUp);
 
+
+document.getElementById("signup").addEventListener('submit', console.log("submit press lah"));
+
+// listening to the submit, because it's added dynamically, we need to listen this way..
+document.addEventListener('submit', function (e) {
+    if (e.target && e.target.id == 'signup') {
+        //do something
+        console.log("submit pressed")
+        //submitRoute();
+    }
+});
+
 window.addEventListener("load", getSession);
 
 
@@ -34,18 +46,7 @@ function getSession(){
     })  
 }
 
-function checkOnLoad(){
 
-    // //let session = getSession();
-    // if(session.loin){
-    //     console.log("user already logged, rediredting..");
-    //     window.location.replace("127.0.0.1/OnlineBusBooking/frontend/dashboard.html");
-    // }
-    // else{
-    //     console.log("user no logged, do nothing..");
-    // }
-
-}
 
 function changeToSignUp() {
     console.log("sign up clicked..");
