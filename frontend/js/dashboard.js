@@ -38,15 +38,15 @@ function getSession() {
                 
                 document.getElementById("userNamePic").innerHTML = `${data_from_json.data.username}`;
                 return data_from_json;
-
+    
             }
             else {
                 // session is false
-                alert(data_from_json.data);
-                //window.location("error.html");
+                alert("something went wrong: "+ data_from_json.data);
+                window.location.replace("index.html");
             }
         })
-}
+    }
 
 
 

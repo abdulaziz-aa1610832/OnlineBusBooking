@@ -14,32 +14,33 @@ document.addEventListener('click',function(e){
 
 
 
-function getSession(){
+ function getSession() {
 
     console.log("trying to fetch session ..");
     fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
-        method:'POST',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
-          },
+        },
         body: `action=getSession&data={}`
     })
-    .then((response_from_api) => response_from_api.json() )
-    .then((data_from_json) => {
-        console.log("logging the json data..")
-        console.log(data_from_json);
-        if(data_from_json.success){
-            // we get the session here, we return it as a json object for further use.
-            return data_from_json;
-        }
-        else{
-            // session is false
-            console.log("session returned false..");
-            alert(data_from_json.data);
-            //window.location("error.html");
-        }   
-    })  
-}
+        .then((response_from_api) => response_from_api.json())
+        .then((data_from_json) => {
+            console.log(data_from_json);
+            if (data_from_json.success) {
+                // we get the session here, we return it as a json object for further use.
+                
+                document.getElementById("userNamePic").innerHTML = `${data_from_json.data.username}`;
+                return data_from_json;
+    
+            }
+            else {
+                // session is false
+                alert("something went wrong: "+ data_from_json.data);
+                window.location.href = "index.html";
+            }
+        })
+    }
 
 function doLogout(theEvent){
     
