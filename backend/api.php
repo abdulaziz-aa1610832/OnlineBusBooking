@@ -322,7 +322,8 @@ switch ($action) {
         $submitted_message = $data->$message or die('{"success":false, "data":"data parameter should be in this format {\"name\":\"nameHere\",\"email\":\"emailHere\",\"phone\":\"phoneHere\",\"message\":\"messageHere\"}"}');
 
         //sql query (insert statement)
-        $sql = "";
+        $sql = "INSERT INTO feedback (`name`,`email`,`phoneno`,`message`) VALUES 
+                ($submitted_name,$submitted_email,$submitted_phone,$submitted_message);";
 
         try{
             if(mysqli_query($conn,$sql)){
@@ -343,7 +344,7 @@ switch ($action) {
         }
 
         //sql query (select statement)
-        $sql = "";
+        $sql = "SELECT * FROM feedback;";
 
         try {
             $result = mysqli_query($conn, $sql);
