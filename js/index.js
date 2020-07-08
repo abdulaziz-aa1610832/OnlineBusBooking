@@ -73,8 +73,6 @@ function validateSignUp() {
   document.getElementById("usernameSignUpError").innerHTML = "";
   document.getElementById("passwordSignUpError").innerHTML = "";
   let re = /\S+@\S+\.\S+/;
-         
-
 
   if (fullName == "") {
     document.getElementById("fullNameSignUpError").innerHTML =
@@ -85,8 +83,9 @@ function validateSignUp() {
     document.getElementById("emailSignUpError").innerHTML = "Email required*";
     canRegister = false;
   }
-  if(!(re.test(email))) {
-    document.getElementById("emailSignUpError").innerHTML = "Format: user@gmail.com";
+  if (!re.test(email)) {
+    document.getElementById("emailSignUpError").innerHTML =
+      "Format: user@gmail.com";
   }
   if (phoneNo == "") {
     document.getElementById("phoneNoSignUpError").innerHTML =
