@@ -2,46 +2,43 @@
 <html>
 
 <head>
-    <title>Admin Page</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <!--CSS file-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <title>Feedback</title>
 </head>
+
+<script src="js/admin.js"></script>
 
 <body>
     <header>
         <div class="profile-container">
-          <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
-          <p id="userNamePic"></p> <!--Put here the admin username, for dashboard, put the user full name-->
+            <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
+            <p id="userNamePic">Admin1</p>
         </div>
         <div class="tabs">
-          <button id="adminLogout" class="btn">sign out</button>
+            <button id="home" class="btn" onclick="location.href='admin.html';">Bookings</button></a>
+            <button id="feedback" class="btn" onclick="location.href='feedback.html';">Feedback</button></a>
+            <button id="logoutbtn" class="btn">sign out</button>
         </div>
-      </header>
+    </header>
     <main>
+        <div id="bookings-container">
+            <form id="add-delete-bookings" action="" method="POST">
 
-        <div id="tableData" class="things">
 
+            </form>
         </div>
-
     </main>
     <div id="social">
         <div id="social-container">
-         
         </div>
-      </div>
-    
-      <footer>
+    </div>
+    <footer>
         <div id="contact-container">
-          
-          </div>
+
         </div>
-      </footer>
+    </footer>
 </body>
 
 </html>
-
-
-
-<script src="js/admin.js"></script>
