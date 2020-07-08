@@ -208,7 +208,7 @@ function doLogin(theEvent) {
                 } else {
                     console.log("api returned false for success, printing the log");
                     console.log(data_from_json);
-
+                    
                     // we can redirect to error page here
                     //window.location.replace("error.html");
                 }
