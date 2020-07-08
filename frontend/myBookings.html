@@ -2,42 +2,39 @@
 <html>
 
 <head>
-    <title>My Bookings</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <!--CSS file-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <title>Feedback</title>
 </head>
+
 
 <body>
     <header>
-        <div class="profile-container">
-          <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
-          <p id="userNamePic"></p> <!--Put here the admin username, for dashboard, put the user full name-->
-        </div>
-        <div class="tabs">
-          <button id="userLogout" class="btn">sign out</button>
-        </div>
-      </header>
+      <div class="profile-container">
+        <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
+        <p id="userNamePic"></p>
+      </div>
+      <div class="tabs">
+        <button id="dashboard" class="btn" onclick="location.href='dashboard.html';">Dashboard</button></a>
+        <button id="myBookings" class="btn" onclick="location.href='myBookings.html';">My Bookings</button></a>
+        <button id="logoutbtn" class="btn">sign out</button>
+      </div>
+    </header>
     <main>
-
-        <div id="tableData" class="things">
+        <div id="bookings-container">
 
         </div>
-
     </main>
     <div id="social">
         <div id="social-container">
-         
         </div>
-      </div>
-    
-      <footer>
+    </div>
+    <footer>
         <div id="contact-container">
-          
-          </div>
+
         </div>
-      </footer>
+    </footer>
 </body>
 
 </html>
@@ -72,7 +69,7 @@ fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
         }
         else {
             // session is false
-            alert("something went wrong: "+ data_from_json.data);
+            alert("something went wrong: "+data_from_json.data);
             window.location.href = "index.html";
         }
     })
@@ -93,27 +90,25 @@ function getUserBookings(){
         console.log("logging the json data..")
         console.log(data_in_json);
         if(data_in_json.success){
-          let divToInsert = `<table class="content-table">
+          let divToInsert = `<table class="trips">
             <thead>
-              <tr>
-                <th>#</th>
-                <th>Booking id</th>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Origin</th>
-                <th>Destination</th>   
-                <th>Payment</th>
-                <th>Status</th>
-              </tr>
+                <tr>
+                    <th>Booking id</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                </tr>
             </thead>
             <tbody>
   `;
-            for (i in data_in_json.data) {
+  for (i in data_in_json.data) {
                 console.log(data_in_json[i]);
                 if (data_in_json.data[i].status == 1) {
                     data_in_json.data[i].status = "confirmed";
                     divToInsert += `<tr class="active-row">
-                    <td><input type="radio" id="${data_in_json.data[i].bookingid}" name="booking" value="${data_in_json.data[i].bookingid}"></td>
                     <td>${data_in_json.data[i].bookingid}</td>
                     <td>${data_in_json.data[i].date}</td>
                     <td>${data_in_json.data[i].name}</td>
@@ -126,7 +121,6 @@ function getUserBookings(){
                 else{
                     data_in_json.data[i].status = "pending";
                     divToInsert += `<tr>
-                    <td><input type="radio" id="${data_in_json.data[i].bookingid}" name="booking" value="${data_in_json.data[i].bookingid}"></td>
                     <td>${data_in_json.data[i].bookingid}</td>
                     <td>${data_in_json.data[i].date}</td>
                     <td>${data_in_json.data[i].name}</td>
@@ -137,12 +131,13 @@ function getUserBookings(){
                 </tr>`;
             }
                 }
-            divToInsert += `</tbody>
-    </table>
-    `
-            document.getElementById("tableData").innerHTML = divToInsert;
+            divToInsert += 
+            `</tbody>
+            </table>
+            <button type="button" class="btn" id="confirm-btn">Confirm</button>
+            <button type="button" class="btn" id="delete-btn">Delete</button>`
+            document.getElementById("bookings-container").innerHTML = divToInsert;
             } 
-        
         
         else{
             // session is false

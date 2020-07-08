@@ -1,7 +1,13 @@
 // JS functions for the main page
 
+// document.getElementById("loginBtn")
+// .addEventListener('click', validateLogin); //doLogin originally
+
+
 document.getElementById("loginBtn")
-.addEventListener('click', validateLogin); //doLogin originally
+.addEventListener('click', doLogin); //doLogin originally
+
+
 
 document.getElementById("signupbtn")
 .addEventListener('click', changeToSignUp);
