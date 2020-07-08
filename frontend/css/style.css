@@ -109,6 +109,12 @@ nav {
   font-size:1rem;
   color:#ffffff;
 }
+#usernameLoginError, #passwordLoginError {
+    color: red;
+    font-size: 1rem;
+    text-align: left;
+    display: none;
+}
 .input-container input:focus { 
  border:none;	
  outline:none;

@@ -1,14 +1,14 @@
 // JS functions for the main page
 
 document.getElementById("loginBtn")
-.addEventListener('click', doLogin);
+.addEventListener('click', validateLogin); //doLogin originally
 
 document.getElementById("signupbtn")
 .addEventListener('click', changeToSignUp);
 
 
 
-window.addEventListener("load", getSession);
+//window.addEventListener("load", getSession);
 
 
 function donothing(){
@@ -53,7 +53,16 @@ function getSession(){
     })  
 }
 
+function validateLogin() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
+    if(username=="") {
+        document.getElementById("usernameLoginError").style.display="block";
+    } if(password=="") {
+        document.getElementById("passwordLoginError").style.display="block";
+    }
+}
 
 function changeToSignUp() {
     console.log("sign up clicked..");
