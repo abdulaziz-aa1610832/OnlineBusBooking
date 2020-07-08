@@ -23,7 +23,7 @@ document.addEventListener('click', function (e) {
 function getSession() {
 
     console.log("trying to fetch session ..");
-    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+    fetch('/api.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -83,7 +83,7 @@ function getRoutesInfo() {
     console.log(destinationFromForm);
     console.log(dateFromForm);
     console.log(dateToSubmit);
-    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+    fetch('/api.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -148,7 +148,7 @@ function getRoutesInfo() {
 
 function getSingleRouteInfo(routeNumber) {
 
-    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+    fetch('/api.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -197,7 +197,7 @@ function submitRoute() {
     console.log("the chose route id is .. ");
     console.log(chosenRouteId);
 
-    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+    fetch('/api.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -231,7 +231,7 @@ function doLogout(theEvent) {
     theEvent.preventDefault();
 
     console.log("before fetch.. trying to fetch");
-    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+    fetch('/api.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

@@ -18,7 +18,7 @@ function sendFeedback(){
         console.log("phone: " + phoneFromForm);
         console.log("message: " + messageFromForm);
         
-        fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+        fetch('/api.php', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
