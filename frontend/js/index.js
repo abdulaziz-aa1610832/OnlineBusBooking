@@ -25,8 +25,17 @@ function getSession(){
     .then((data_from_json) => {
         console.log(data_from_json);
         if(data_from_json.success){
-            // we get the session here, we return it as a json object for further use.
-            window.location.href = "dashboard.html";
+
+            if(data_from_json.data.level == "1"){
+                console.log("admin user");
+                window.location.href = "admin.html";
+            }
+            else{
+                console.log("normal user");
+                window.location.href = "dashboard.html";
+            }
+
+
             return data_from_json;
         }
         else{
