@@ -35,15 +35,18 @@ function getSession() {
       console.log(data_from_json);
       if (data_from_json.success) {
         // we get the session here, we return it as a json object for further use.
-
-        document.getElementById(
-          "userNamePic"
-        ).innerHTML = `${data_from_json.data.username}`;
+        if (data_from_json.data.level == "1") {
+          document.getElementById(
+            "userNamePic"
+          ).innerHTML = `${data_from_json.data.username}`;
+        } else if (data_from_json.data.level == "2") {
+          window.location.replace("dashboard.html");
+        }
         return data_from_json;
       } else {
-        // session is false
+        // session is false, not logged in
         alert("something went wrong: " + data_from_json.data);
-        window.location.href = "index.html";
+        window.location.replace("index.html");
       }
     });
 }

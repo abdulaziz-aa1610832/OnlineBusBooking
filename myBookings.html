@@ -66,13 +66,13 @@
                         // do nothing typically
                         document.getElementById("userNamePic").innerHTML = `${data_from_json.data.username}`;
                     }
-                    else if (data_from_json.data.level == 1) {
+                    else if (data_from_json.data.level == "1") {
 
                         window.location.reload("admin.html");
                     }
-                    else {
-                        // not a user nor an admin
-                        window.location.replace("index.html")
+                    else if (data_from_json.data.level == "2") {
+                        // he is a user, do notthing
+
                     }
 
                     return data_from_json;
@@ -81,7 +81,7 @@
                 else {
                     // session is false
                     alert("something went wrong: " + data_from_json.data);
-                    window.location.href = "index.html";
+                    window.location.replace("index.html");
                 }
             })
     }

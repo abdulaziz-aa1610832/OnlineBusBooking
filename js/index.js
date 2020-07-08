@@ -26,7 +26,7 @@ function getSession() {
         if (data_from_json.data.level == "1") {
           console.log("admin user");
           window.location.href = "admin.html";
-        } else {
+        } else if (data_from_json.data.level == "2") {
           console.log("normal user");
           window.location.href = "dashboard.html";
         }
@@ -36,8 +36,6 @@ function getSession() {
         console.log("user is not logged in, doin nothing....");
         // session is false
         // do nothing here
-        //alert(data_from_json.data);
-        //window.location("error.html");
       }
     });
 }
@@ -75,8 +73,6 @@ function validateSignUp() {
   document.getElementById("usernameSignUpError").innerHTML = "";
   document.getElementById("passwordSignUpError").innerHTML = "";
   let re = /\S+@\S+\.\S+/;
-         
-
 
   if (fullName == "") {
     document.getElementById("fullNameSignUpError").innerHTML =
@@ -87,8 +83,9 @@ function validateSignUp() {
     document.getElementById("emailSignUpError").innerHTML = "Email required*";
     canRegister = false;
   }
-  if(!(re.test(email))) {
-    document.getElementById("emailSignUpError").innerHTML = "Format: user@gmail.com";
+  if (!re.test(email)) {
+    document.getElementById("emailSignUpError").innerHTML =
+      "Format: user@gmail.com";
   }
   if (phoneNo == "") {
     document.getElementById("phoneNoSignUpError").innerHTML =
