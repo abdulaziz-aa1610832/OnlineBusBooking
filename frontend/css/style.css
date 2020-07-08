@@ -4,209 +4,253 @@
     box-sizing: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 body {
     background-color: #f4f4f4;
 }
-header{
-    background-color:#2a3236;
-    color:#ffffff;
-    padding-top:2rem;
-    min-height:4rem;
-    border-bottom:#e8491d 0.25rem solid;
+
+header {
+    background-color: #2a3236;
+    color: #ffffff;
+    padding-top: 2rem;
+    min-height: 4rem;
+    border-bottom: #e8491d 0.25rem solid;
 }
-header a{
-    color:#ffffff;
-    text-decoration:none;
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
     text-transform: uppercase;
-    font-size:16px;
+    font-size: 16px;
 }
-header li{
-    display:inline;
+
+header li {
+    display: inline;
     padding: 0 1rem 0 1rem;
 }
-header .current a{
-    color:#e8491d;
-    font-weight:bold;
 
+header .current a {
+    color: #e8491d;
+    font-weight: bold;
 }
-header a:hover{
-    color:#cccccc;
-    font-weight:bold;
+
+header a:hover {
+    color: #cccccc;
+    font-weight: bold;
 }
+
 header img {
     width: 4rem;
     height: 4rem;
 }
+
 .profile-container {
     text-align: center;
     float: left;
     padding: 0 0 0 3.5rem;
 }
+
 .profile-container p {
     padding: 0.5rem;
 }
+
 .tabs {
     display: flex;
     justify-content: flex-end;
     padding: 2rem 0 0 0;
 }
-#logoutbtn, #feedback {
+
+#logoutbtn,
+#feedback {
     margin-left: 0.5rem;
 }
+
 #websiteName {
     text-align: center;
     margin-bottom: 1.25rem;
 }
+
 nav {
     display: flex;
     justify-content: space-around;
     margin: 1rem;
 }
+
 #login {
     text-align: center;
 }
+
 .text-center {
-	color:#fff;	
-	text-transform:uppercase;
+    color: #fff;
+    text-transform: uppercase;
     font-size: 1.5rem;
     margin: -3.125rem 0 5rem 0;
     display: block;
     text-align: center;
 }
-#login-box, #signup-box {
-	position:absolute;
-	left:50%;
-	top:55%;
-	transform: translate(-50%,-50%);
+
+#login-box,
+#signup-box {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.89);
-	border-radius:0.1875rem;
-	padding:4.375rem 6.25rem;
+    border-radius: 0.1875rem;
+    padding: 4.375rem 6.25rem;
 }
+
 #signup-box {
     display: none;
 }
+
 #form-container {
     display: flex;
     justify-content: space-around;
 }
+
 .input-container {
-	position:relative;
-	margin:1.5rem;
+    position: relative;
+    margin: 1.5rem;
 }
+
 .input-container label {
-	position:absolute;
-	top:0;
-	left:0;
-	font-size:1rem;
-    color:#ffffff;	
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    color: #ffffff;
 }
-.input-container input { 
-  border:0;
-  border-bottom:1px solid #555;  
-  background:transparent;
-  width:100%;
-  padding:8px 0 5px 0;
-  font-size:1rem;
-  color:#ffffff;
+
+.input-container input {
+    border: 0;
+    border-bottom: 1px solid #555;
+    background: transparent;
+    width: 100%;
+    padding: 8px 0 5px 0;
+    font-size: 1rem;
+    color: #ffffff;
 }
-#usernameLoginError, #passwordLoginError {
+
+#usernameLoginError,
+#passwordLoginError,
+#fullNameSignUpError,
+#emailSignUpError,
+#phoneNoSignUpError,
+#usernameSignUpError,
+#passwordSignUpError {
     color: red;
     font-size: 1rem;
     text-align: left;
-    display: none;
 }
-.input-container input:focus { 
- border:none;	
- outline:none;
- border-bottom:1px solid #e8491d;	
+
+.input-container input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #e8491d;
 }
+
 .btn {
-	color:#ffffff;
-	background-color:#e8491d;
-	outline: none;
+    color: #ffffff;
+    background-color: #e8491d;
+    outline: none;
     border: 0;
     color: #ffffff;
-	padding:0.625rem 1.25rem;
-	text-transform:uppercase;
-	margin-top:3.125rem;
-	border-radius:2px;
-	cursor:pointer;
-    position:relative;
-   
+    padding: 0.625rem 1.25rem;
+    text-transform: uppercase;
+    margin-top: 3.125rem;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
 }
+
 .btn:hover {
-    background-color:#e8491db9;
+    background-color: #e8491db9;
     font-weight: bold;
 }
+
 #buttons a {
     font-size: 1rem;
 }
+
 #haveAnAccount a {
     margin: 2rem;
-    color:#ffffff;
-    font-size:1rem;
+    color: #ffffff;
+    font-size: 1rem;
 }
+
 #haveAnAccount a:hover {
     color: #e8491db9;
 }
+
 #main {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: url("https://media.giphy.com/media/9J1gt3HpXuhPUaYlSX/giphy.gif"); 
+    background-image: url("https://media.giphy.com/media/9J1gt3HpXuhPUaYlSX/giphy.gif");
     background-size: cover;
     height: 100vh;
     font-size: 4rem;
     color: #ffffff;
 }
+
 #services {
     background-color: #ffffff;
     height: 50vh;
     text-align: center;
     font-size: 2rem;
 }
+
 #about {
     background-image: url(../img/BusBanner.jpg);
     background-size: cover;
     background-position-y: -4rem;
     height: 50vh;
 }
-#about-container{
+
+#about-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     color: #ffffff;
 }
+
 #about-text {
     padding: 3rem;
     width: 50rem;
     font-size: 1rem;
 }
+
 #about-header {
     width: 20rem;
     font-size: 2.5rem;
 }
+
 #faq {
     background-color: #ffffff;
     height: 70vh;
     text-align: center;
     font-size: 2rem;
 }
+
 #faq .fas {
-    color:#e8491d;
+    color: #e8491d;
     font-size: 2rem;
 }
+
 .QnA h6 {
     text-align: center;
     margin: auto;
 }
+
 .QnA p {
     text-align: left;
     width: 50rem;
     margin: auto;
     font-size: 1rem;
 }
+
 #social {
     display: flex;
     justify-content: center;
@@ -215,15 +259,18 @@ nav {
     background-color: #e8491d;
     height: 10vh;
 }
+
 a .fab {
-    color:#ffffff;
+    color: #ffffff;
     width: 3rem;
     margin-bottom: 1.5rem;
     font-size: 2rem;
 }
+
 a .fab:hover {
-    color:#FFB6C1;
+    color: #FFB6C1;
 }
+
 footer {
     background-color: #2a3236;
     text-align: center;
@@ -231,12 +278,14 @@ footer {
     color: #ffffff;
     font-size: 2rem;
 }
+
 #contact-container .fas {
-    color:#e8491d;
+    color: #e8491d;
     width: 3rem;
     margin-bottom: 1.5rem;
     font-size: 2rem;
 }
+
 #contact-container {
     padding: 3rem 0 6rem 0;
     display: flex;
@@ -244,98 +293,126 @@ footer {
     align-items: flex-end;
     font-size: 1rem;
 }
-#search-container{
+
+#search-container {
     display: flex;
     justify-content: center;
 }
+
 #search-box {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color:#ffffff;
+    color: #ffffff;
     background-color: rgba(0, 0, 0, 0.89);
-	border-radius:0.1875rem;
-    padding:4rem 3rem;
+    border-radius: 0.1875rem;
+    padding: 4rem 3rem;
     width: 50rem;
-    height:3rem;
+    height: 3rem;
     margin: 8.5rem;
 }
-#after-submit, #feedback-container, #bookings-container {
+
+#after-submit,
+#feedback-container,
+#bookings-container {
     display: flex;
     justify-content: center;
     align-self: flex-start;
 }
-.trips, .feedback-table {
+
+.trips,
+.feedback-table {
     border-collapse: collapse;
     text-align: center;
     width: 80rem;
     margin: 3rem;
 }
-.trips th, .feedback-table th {
+
+.trips th,
+.feedback-table th {
     background-color: #2a3236;
     color: #ffffff;
     font-size: 1.5rem;
     padding: 2rem;
 }
-.trips tr:nth-child(even), .feedback-table tr:nth-child(even){
+
+.trips tr:nth-child(even),
+.feedback-table tr:nth-child(even) {
     background-color: #ecdbb7;
 }
-.trips td, .feedback-table td {
+
+.trips td,
+.feedback-table td {
     font-weight: bold;
     font-size: 1rem;
     padding: 2rem;
 }
+
 #bookings-container tbody tr.active-row {
     font-weight: bold;
     color: #009879;
-  }
-#after-submit button, #bookings-container button {
+}
+
+#after-submit button,
+#bookings-container button {
     position: relative;
     left: 39rem;
     bottom: 4.5rem;
     padding: 1rem;
     background-color: #2a3236;
 }
+
 #sorting {
     position: absolute;
-    left:84rem;
+    left: 84rem;
     font-size: 1.5rem;
 }
-.emailMessage, .senderName {
+
+.emailMessage,
+.senderName {
     text-align: left;
 }
+
 .senderName {
     width: 8rem;
 }
+
 #about-main-container {
     display: flex;
     justify-content: center;
 }
+
 #about-main-text {
     width: 75rem;
     padding: 0 5rem 5rem 5rem;
 }
-#about-main-text h1{
+
+#about-main-text h1 {
     text-align: center;
     padding: 2rem;
 }
-.about-us{ /*Will still edit the names of the classes and tweak some stuff to 
+
+.about-us {
+    /*Will still edit the names of the classes and tweak some stuff to 
     complete the merge of about.css and style.css*/
     text-align: center;
     padding: 0.5rem;
 }
+
 #testomonial-container {
     max-width: 1200px;
     margin: auto;
     overflow: hidden;
     padding: 20px;
 }
+
 .card-container-testimon .title {
     color: #808080;
     font-weight: 500;
     text-align: center;
 }
-.card-container-testimon{
+
+.card-container-testimon {
     display: inline-block;
     width: calc(100% / 3);
     margin: 0 -2px;
@@ -344,39 +421,47 @@ footer {
     cursor: pointer;
     transition: 0.4s;
 }
-.card-container-testimon:hover{
+
+.card-container-testimon:hover {
     background: #d1cac1;
 }
-.card-container-testimon i{
+
+.card-container-testimon i {
     color: #2a3236;
     font-size: 34px;
     margin-bottom: 30px;
 }
-.card-container-testimon h2{
+
+.card-container-testimon h2 {
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 500;
     margin: 0;
 }
-.card-container-testimon p{
+
+.card-container-testimon p {
     font-size: 15px;
     font-weight: 500;
     text-align: left;
     text-decoration-style: wavy;
 }
+
 .message {
     text-align: center;
     padding: 6.85rem;
 }
+
 .message .fas {
-    color:#008000;
+    color: #008000;
     font-size: 10rem;
     padding: 2rem;
 }
+
 .message h1 {
     font-size: 2rem;
     font-weight: bold;
 }
+
 .message p {
     font-size: 1.25rem;
     width: 30rem;
