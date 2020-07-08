@@ -8,7 +8,7 @@ document.getElementById("signupbtn")
 
 
 
-//window.addEventListener("load", getSession);
+window.addEventListener("load", getSession);
 
 
 function donothing() {
@@ -94,8 +94,16 @@ function validateSignUp() {
         document.getElementById("phoneNoSignUpError").innerHTML = "Phone number required*";
         canRegister = false;
     }
+    if (isNaN(phoneNo)) {
+        document.getElementById("phoneNoSignUpError").innerHTML = "Digits allowed only*";
+        canRegister = false;
+    }
     if (username == "") {
         document.getElementById("usernameSignUpError").innerHTML = "Username required*";
+        canRegister = false;
+    }
+    if (password.length < 8) {
+        document.getElementById("passwordSignUpError").innerHTML = "Minimum length: 8 characters*";
         canRegister = false;
     }
     if (password == "") {
@@ -211,50 +219,49 @@ function doLogin(theEvent) {
 
 
 function registerUser() {
+    if (validateSignUp) {
+        console.log("start register user..")
 
 
-    console.log("start register user..")
+        // extract data from the form.
+        let nameFromForm = document.getElementById("fullName").value;
+        let userFromForm = document.getElementById("username").value;
+        let passwordFromForm = document.getElementById("password").value;
+        let emailFromForm = document.getElementById("email").value;
+        let phoneFromForm = document.getElementById("phoneNo").value;
 
 
-    // extract data from the form.
-    let nameFromForm = document.getElementById("fullName").value;
-    let userFromForm = document.getElementById("username").value;
-    let passwordFromForm = document.getElementById("password").value;
-    let emailFromForm = document.getElementById("email").value;
-    let phoneFromForm = document.getElementById("phoneNo").value;
+        console.log("logging data to be submitted..");
+        console.log("user: " + userFromForm);
+        console.log("name: " + nameFromForm);
+        console.log(passwordFromForm);
+        console.log(emailFromForm);
+        console.log(phoneFromForm);
 
 
-    console.log("logging data to be submitted..");
-    console.log("user: " + userFromForm);
-    console.log("name: " + nameFromForm);
-    console.log(passwordFromForm);
-    console.log(emailFromForm);
-    console.log(phoneFromForm);
+        fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `action=registerUser&data={"name":"${nameFromForm}", "username":"${userFromForm}", "password": "${passwordFromForm}", "phone":"${phoneFromForm}", "email":"${emailFromForm}"}`
+            })
+            .then((response_from_api) => response_from_api.json())
+            .then(data_from_json => {
+                if (data_from_json.success) {
+                    console.log("succes: " + data_from_json)
+                    alert("Registration Successful, redirecting to main page so u can  login...");
+                    window.location.replace("index.html");
+                } else {
+                    console.log("api returned false for success, printing the log");
+                    console.log(data_from_json);
+                    alert("an error happend .");
 
 
-    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: `action=registerUser&data={"name":"${nameFromForm}", "username":"${userFromForm}", "password": "${passwordFromForm}", "phone":"${phoneFromForm}", "email":"${emailFromForm}"}`
-        })
-        .then((response_from_api) => response_from_api.json())
-        .then(data_from_json => {
-            if (data_from_json.success) {
-                console.log("succes: " + data_from_json)
-                alert("Registration Successful, redirecting to main page so u can  login...");
-                window.location.replace("index.html");
-            } else {
-                console.log("api returned false for success, printing the log");
-                console.log(data_from_json);
-                alert("an error happend .");
+                    // we can redirect to error page here
+                    //window.location.replace("error.html");
+                }
+            })
 
-
-                // we can redirect to error page here
-                //window.location.replace("error.html");
-            }
-        })
-
-
+    } else {}
 }
