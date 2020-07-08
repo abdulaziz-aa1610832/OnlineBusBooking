@@ -219,7 +219,7 @@ function doLogin(theEvent) {
 
 
 function registerUser() {
-    if (validateSignUp) {
+    if (validateSignUp()) {
         console.log("start register user..")
 
 
