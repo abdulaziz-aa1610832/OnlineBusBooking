@@ -152,7 +152,7 @@ function getAllBookings(){
     </table>
     <button type="button" id="confirm-btn">Confirm</button>
         <button type="button" id="delete-btn">Delete</button>`
-            document.getElementById("tableData").innerHTML = divToInsert;
+            document.getElementById("bookings-container").innerHTML = divToInsert;
             } 
         else{
             console.log("api returned false for success, printing the log");

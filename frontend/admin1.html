@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--CSS file-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Feedback</title>
+</head>
+
+<body>
+    <header>
+        <div class="profile-container">
+            <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
+            <p id="userNamePic">Admin1</p>
+        </div>
+        <div class="tabs">
+            <button id="home" class="btn" onclick="location.href='admin.html';">Bookings</button></a>
+            <button id="feedback" class="btn" onclick="location.href='feedback.html';">Feedback</button></a>
+            <button id="logoutbtn" class="btn">sign out</button>
+        </div>
+    </header>
+    <main>
+        <div id="bookings-container">
+            <form id="add-delete-bookings" action="" method="POST">
+
+                <table class="trips">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Booking id</th>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active-row">
+                            <td><input type="radio" id="" name="booking" value=""></td>
+                            <td>1</td>
+                            <td>4/7/2020</td>
+                            <td>Person Name</td>
+                            <td>Johor</td>
+                            <td>Kuala lumpur</td>
+                            <td>50RM</td>
+                            <td>Confirmed</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" id="" name="booking" value=""></td>
+                            <td>2</td>
+                            <td>8/7/2020</td>
+                            <td>Person Name</td>
+                            <td>Sabah</td>
+                            <td>Johor</td>
+                            <td>35RM</td>
+                            <td>Pending</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn" id="confirm-btn">Confirm</button>
+                <button type="button" class="btn" id="delete-btn">Delete</button>
+            </form>
+        </div>
+
+    </main>
+    <div id="social">
+        <div id="social-container">
+        </div>
+    </div>
+    <footer>
+        <div id="contact-container">
+
+        </div>
+    </footer>
+</body>
+
+</html>

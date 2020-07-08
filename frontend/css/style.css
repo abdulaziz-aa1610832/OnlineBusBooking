@@ -254,7 +254,7 @@ footer {
     height:3rem;
     margin: 8.5rem;
 }
-#after-submit, #feedback-container {
+#after-submit, #feedback-container, #bookings-container {
     display: flex;
     justify-content: center;
     align-self: flex-start;
@@ -279,7 +279,11 @@ footer {
     font-size: 1rem;
     padding: 2rem;
 }
-#after-submit button {
+#bookings-container tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+  }
+#after-submit button, #bookings-container button {
     position: relative;
     left: 39rem;
     bottom: 4.5rem;
