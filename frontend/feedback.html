@@ -17,7 +17,7 @@
         <div class="tabs">
             <button id="home" class="btn" onclick="location.href='admin.html';">Bookings</button></a>
             <button id="feedback" class="btn" onclick="location.href='feedback.html';">Feedback</button></a>
-            <button id="logoutbtn" class="btn">sign out</button>
+            <button id="logoutbtn" class="btn" onclick="doLogout()">sign out</button>
         </div>
     </header>
 
@@ -43,6 +43,7 @@
 
 window.onload = getFeedback();
 function getFeedback(){
+
 
 //action=getFeedback&data={}
 // {"success":"true", "data":{1:{json object of message with id one}, 2:{} , 3:{} }}
@@ -101,4 +102,39 @@ fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
 .catch(err => console.log(err))
 
 }   
+function doLogout(){
+    
+    console.log("do logout starts..");
+ 
+
+    console.log("before fetch.. trying to fetch");
+    fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        body: `action=doLogout&data={}`
+    })
+    .then((response_from_api) => response_from_api.json())
+    .then(data_from_json => {
+        console.log("test after response.. converting to json next");
+        
+        if(data_from_json.success){  
+            //window.location.replace("dashboard.html");
+            console.log("success");
+            console.log(data_from_json);
+            window.location.replace("index.html");
+        }
+        else{
+            console.log("api returned false for success, printing the log");
+            console.log(data_from_json);
+            
+            // we can redirect to error page here
+            //window.location.replace("error.html");
+         }
+    })
+    .catch(err => console.log(err))
+
+}
+
 </script>
