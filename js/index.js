@@ -26,7 +26,7 @@ function getSession() {
         if (data_from_json.data.level == "1") {
           console.log("admin user");
           window.location.href = "admin.html";
-        } else if(data_from_json.data.level == "2"){
+        } else if (data_from_json.data.level == "2") {
           console.log("normal user");
           window.location.href = "dashboard.html";
         }

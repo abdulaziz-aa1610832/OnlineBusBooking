@@ -29,7 +29,9 @@ function getSession() {
         // we get the session here, we return it as a json object for further use.
         if (data_from_json.data.level == "2") {
           // do nothing typically
-          document.getElementById("userNamePic").innerHTML = `${data_from_json.data.username}`;
+          document.getElementById(
+            "userNamePic"
+          ).innerHTML = `${data_from_json.data.username}`;
         } else if (data_from_json.data.level == "1") {
           window.location.replace("admin.html");
         } else {
