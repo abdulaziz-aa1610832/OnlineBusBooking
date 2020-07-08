@@ -11,6 +11,11 @@ document.getElementById("signupbtn")
 window.addEventListener("load", getSession);
 
 
+function donothing(){
+
+    console.log("donothing here..");
+}
+
 function getSession(){
 
     console.log("trying to fetch session ..");
@@ -39,8 +44,9 @@ function getSession(){
             return data_from_json;
         }
         else{
-            console.log("user is not logged in..");
+            console.log("user is not logged in, doin nothing....");
             // session is false
+            // do nothing here
             //alert(data_from_json.data);
             //window.location("error.html");
         }   
@@ -194,7 +200,7 @@ function registerUser(){
             
             
             // we can redirect to error page here
-            window.location.replace("error.html");
+            //window.location.replace("error.html");
          }
     })
 
