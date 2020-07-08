@@ -35,10 +35,20 @@ function getSession() {
             console.log(data_from_json);
             if (data_from_json.success) {
                 // we get the session here, we return it as a json object for further use.
-                
-                document.getElementById("userNamePic").innerHTML = `${data_from_json.data.username}`;
-                return data_from_json;
-    
+                if(data_from_json.data.level == 2){
+                    // do nothing typically
+                    document.getElementById("userNamePic").innerHTML = `${data_from_json.data.username}`;
+                }
+                else if(data_from_json.data.level == 1){
+
+                    window.location.reload("admin.html");
+                }
+                else{
+                    // not a user nor an admin
+                    window.location.replace("index.html")
+                }
+                    return data_from_json;
+                    
             }
             else {
                 // session is false
