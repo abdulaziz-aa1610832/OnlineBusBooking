@@ -18,7 +18,7 @@ function sendFeedback(){
         console.log("phone: " + phoneFromForm);
         console.log("message: " + messageFromForm);
         
-        fetch('/api.php', {
+        fetch('./api.php', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

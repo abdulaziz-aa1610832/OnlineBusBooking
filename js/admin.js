@@ -29,7 +29,7 @@ document.addEventListener('click',function(e){
  function getSession() {
 
     console.log("trying to fetch session ..");
-    fetch('/api.php', {
+    fetch('./api.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -60,7 +60,7 @@ function doLogout(){
  
 
     console.log("before fetch.. trying to fetch");
-    fetch('/api.php', {
+    fetch('./api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -94,7 +94,7 @@ function doLogout(){
 function getAllBookings(){
 
     
-    fetch('/api.php', {
+    fetch('./api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -194,7 +194,7 @@ function confirmBooking(){
     console.log("the chose route id is .. ");
     console.log(chosenRouteId);
 
-    fetch('/api.php', {
+    fetch('./api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -245,7 +245,7 @@ function deleteBooking(){
     console.log("the chose route id is .. ");
     console.log(chosenRouteId);
 
-    fetch('/api.php', {
+    fetch('./api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

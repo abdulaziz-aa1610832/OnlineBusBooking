@@ -50,7 +50,7 @@ document.getElementById("logoutbtn").addEventListener('click', doLogout)
 function getSession() {
 
 console.log("trying to fetch session ..");
-fetch('/api.php', {
+fetch('./api.php', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -89,7 +89,7 @@ fetch('/api.php', {
 function getUserBookings(){
 
     console.log("trying to fetch booking ..");
-    fetch('/api.php', {
+    fetch('./api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -168,7 +168,7 @@ function getUserBookings(){
     theEvent.preventDefault();
 
     console.log("before fetch.. trying to fetch");
-    fetch('/api.php', {
+    fetch('./api.php', {
         method:'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

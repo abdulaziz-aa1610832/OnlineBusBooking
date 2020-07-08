@@ -19,7 +19,7 @@ function donothing() {
 function getSession() {
 
     console.log("trying to fetch session ..");
-    fetch('/api.php', {
+    fetch('./api.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -182,7 +182,7 @@ function doLogin(theEvent) {
         console.log(passwordFromForm);
 
         console.log("before fetch.. trying to fetch");
-        fetch('/api.php', {
+        fetch('./api.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -239,7 +239,7 @@ function registerUser() {
         console.log(phoneFromForm);
 
 
-        fetch('/api.php', {
+        fetch('./api.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
