@@ -67,7 +67,12 @@ CREATE TABLE `routes` (
 
 INSERT INTO `routes` (`routeid`, `cost`, `time`, `date`, `origin`, `destination`, `available_seats_count`) VALUES
 (1, 100, '10:00', '12/12/2003', 'foo', 'bar', 49),
-(2, 50, '12:00', '12/12/2004', 'bar', 'foo', 48);
+(2, 50, '12:00', '12/12/2004', 'bar', 'foo', 48),
+(100,70,'15:00','07/08/2020','Johor','Kedah',48),
+(200,20,'15:00','07/10/2020','Johor','Kuala lumpur',48),
+(300,50,'18:00','07/12/2020','Selangor','Johor',50),
+(400,80,'04:00','07/15/2020','Johor','Selangor',45),
+(500,40,'02:00','07/20/2020','Kuala lumpur','Selangor',48);
 
 -- --------------------------------------------------------
 
