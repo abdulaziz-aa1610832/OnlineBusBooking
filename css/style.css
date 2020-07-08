@@ -195,14 +195,33 @@ nav {
   font-size: 4rem;
   color: #ffffff;
 }
-
-#services {
+#places-container {
+  font-size: 3rem;
+  text-align: center;
+  height: 90vh;
+}
+#places-we-go-to {
+  display: flex;
+  justify-content: space-around;
   background-color: #ffffff;
   height: 50vh;
   text-align: center;
   font-size: 2rem;
 }
-
+.place {
+  margin-top: 3rem;
+}
+.place p {
+  text-align: left;
+  font-size: 1.5rem;
+  width: 30rem;
+  padding: 1rem;
+}
+.place img {
+  margin-top: 3rem;
+  width: 30rem;
+  height: 20rem;
+}
 #about {
   background-image: url(../img/BusBanner.jpg);
   background-size: cover;
