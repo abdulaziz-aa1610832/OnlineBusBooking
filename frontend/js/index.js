@@ -208,7 +208,7 @@ function doLogin(theEvent) {
                 } else {
                     console.log("api returned false for success, printing the log");
                     console.log(data_from_json);
-                    
+                    document.getElementById("passwordLoginError").innerHTML = data_from_json.data;
                     // we can redirect to error page here
                     //window.location.replace("error.html");
                 }
@@ -257,7 +257,7 @@ function registerUser() {
                     console.log(data_from_json);
                     alert("an error happend .");
 
-
+                    
                     // we can redirect to error page here
                     //window.location.replace("error.html");
                 }
