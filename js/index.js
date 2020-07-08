@@ -115,8 +115,6 @@ function validateSignUp() {
 function changeToSignUp() {
   console.log("sign up clicked..");
   document.getElementById("login-box").style.display = "none";
-  let emailRegex = "/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/;";
-  let passwordRegex = "^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?!.*s).*$";
   let newFormContent = `
    <form id="signupForm">
    <span class="text-center">Sign Up</span>
