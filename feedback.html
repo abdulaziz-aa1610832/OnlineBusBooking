@@ -12,7 +12,7 @@
     <header>
         <div class="profile-container">
             <img src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png">
-            <p>Admin1</p>
+            <p id="userNamePic">Admin1</p>
         </div>
         <div class="tabs">
             <button id="home" class="btn" onclick="location.href='admin.html';">Bookings</button></a>
@@ -23,7 +23,7 @@
 
     <main>
         <div id="feedback-container">
-        </div>  
+        </div>
     </main>
 
     <div id="social">
@@ -35,106 +35,106 @@
 
         </div>
     </footer>
-</body>
-</html>
+    <script src="js/admin.js"></script>
+    <script>
+
+        window.onload = getFeedback();
+        function getFeedback() {
 
 
-<script>
+            //action=getFeedback&data={}
+            // {"success":"true", "data":{1:{json object of message with id one}, 2:{} , 3:{} }}
 
-window.onload = getFeedback();
-function getFeedback(){
+            console.log("get all feebacks start..")
+            fetch('./api.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `action=getFeedback&data={}`
+            })
+                .then((response_from_api) => response_from_api.json())
+                .then(data_in_json => {
+                    if (data_in_json.success) {
+                        console.log("success is true..")
+
+                        let divToInsert = `<table class="feedback-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+        `;
+                        for (i in data_in_json.data) {
+                            console.log(data_in_json[i]);
+
+                            divToInsert +=
+                                `<tr>
+                                <td class="senderName">${data_in_json.data[i].name}</td>
+                                <td>${data_in_json.data[i].email}</td>
+                                <td>${data_in_json.data[i].phoneno}</td>
+                                <td class="emailMessage">${data_in_json.data[i].message}</td>
+                        </tr>`;
 
 
-//action=getFeedback&data={}
-// {"success":"true", "data":{1:{json object of message with id one}, 2:{} , 3:{} }}
+                        }
 
-console.log("get all feebacks start..")
-fetch('./api.php', {
-   method:'POST',
-   headers: {
-       'Content-Type': 'application/x-www-form-urlencoded'
-     },
-   body: `action=getFeedback&data={}`
-})
-.then((response_from_api) => response_from_api.json())
-.then(data_in_json => {
-   if(data_in_json.success){  
-       console.log("success is true..")
+                        divToInsert += `
+        </tbody>
+        </table>`
+                        document.getElementById("feedback-container").innerHTML = divToInsert;
+                    }
+                    else {
+                        console.log("api returned false for success, printing the log");
+                        console.log(data_from_json);
 
-       let divToInsert = `<table class="feedback-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Message</th>
-                    </tr>
-                </thead>
-                <tbody>
-`;
-       for (i in data_in_json.data) {
-           console.log(data_in_json[i]);
+                        // we can redirect to error page here
+                        //window.location.replace("error.html");
+                    }
+                })
+                .catch(err => console.log(err))
 
-               divToInsert += 
-               `<tr>
-                        <td class="senderName">${data_in_json.data[i].name}</td>
-                        <td>${data_in_json.data[i].email}</td>
-                        <td>${data_in_json.data[i].phoneno}</td>
-                        <td class="emailMessage">${data_in_json.data[i].message}</td>
-                </tr>`;
-       
-       
-       }
-           
-       divToInsert += `
-</tbody>
-</table>`
-       document.getElementById("feedback-container").innerHTML = divToInsert;
-       } 
-   else{
-       console.log("api returned false for success, printing the log");
-       console.log(data_from_json);
-       
-       // we can redirect to error page here
-       //window.location.replace("error.html");
-    }
-})
-.catch(err => console.log(err))
-
-}   
-function doLogout(){
-    
-    console.log("do logout starts..");
- 
-
-    console.log("before fetch.. trying to fetch");
-    fetch('./api.php', {
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-        body: `action=doLogout&data={}`
-    })
-    .then((response_from_api) => response_from_api.json())
-    .then(data_from_json => {
-        console.log("test after response.. converting to json next");
-        
-        if(data_from_json.success){  
-            //window.location.replace("dashboard.html");
-            console.log("success");
-            console.log(data_from_json);
-            window.location.replace("index.html");
         }
-        else{
-            console.log("api returned false for success, printing the log");
-            console.log(data_from_json);
-            
-            // we can redirect to error page here
-            //window.location.replace("error.html");
-         }
-    })
-    .catch(err => console.log(err))
+        function doLogout() {
 
-}
+            console.log("do logout starts..");
 
-</script>
+
+            console.log("before fetch.. trying to fetch");
+            fetch('./api.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `action=doLogout&data={}`
+            })
+                .then((response_from_api) => response_from_api.json())
+                .then(data_from_json => {
+                    console.log("test after response.. converting to json next");
+
+                    if (data_from_json.success) {
+                        //window.location.replace("dashboard.html");
+                        console.log("success");
+                        console.log(data_from_json);
+                        window.location.replace("index.html");
+                    }
+                    else {
+                        console.log("api returned false for success, printing the log");
+                        console.log(data_from_json);
+
+                        // we can redirect to error page here
+                        //window.location.replace("error.html");
+                    }
+                })
+                .catch(err => console.log(err))
+
+        }
+
+    </script>
+</body>
+
+</html>
