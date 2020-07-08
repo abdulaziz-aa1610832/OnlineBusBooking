@@ -1,4 +1,3 @@
-document.getElementById("adminLogout").addEventListener('click', doLogout)
 window.addEventListener("load", getSession);
 window.addEventListener("load", getAllBookings);
 
@@ -16,7 +15,12 @@ document.addEventListener('click',function(e){
         //do something
         console.log("delete pressed")
         deleteBooking();
-        
+     }
+    if(e.target && e.target.id == 'logoutbtn'){
+            //do something
+            console.log("signout iss pressed");
+            doLogout();
+            
    }
  });
 
@@ -50,12 +54,10 @@ document.addEventListener('click',function(e){
         })
     }
 
-function doLogout(theEvent){
+function doLogout(){
     
     console.log("do logout starts..");
-    //  going to prevent the page from reloading or
-    // navigating away when you actually submit the form
-    theEvent.preventDefault();
+ 
 
     console.log("before fetch.. trying to fetch");
     fetch('http://127.0.0.1/OnlineBusBooking/backend/api.php', {
@@ -104,18 +106,18 @@ function getAllBookings(){
         if(data_in_json.success){  
             console.log("success is true..")
 
-            let divToInsert = `<table class="content-table">
+            let divToInsert = `<table class="trips">
             <thead>
-              <tr>
-                <th>#</th>
-                <th>Booking id</th>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Origin</th>
-                <th>Destination</th>   
-                <th>Payment</th>
-                <th>Status</th>
-              </tr>
+                <tr>
+                    <th>#</th>
+                    <th>Booking id</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                </tr>
             </thead>
             <tbody>
   `;
@@ -148,18 +150,19 @@ function getAllBookings(){
                 </tr>`;
             }
                 }
-            divToInsert += `</tbody>
-    </table>
-    <button type="button" id="confirm-btn">Confirm</button>
-        <button type="button" id="delete-btn">Delete</button>`
-            document.getElementById("bookings-container").innerHTML = divToInsert;
+            divToInsert += 
+            `</tbody>
+            </table>
+            <button type="button" class="btn" id="confirm-btn">Confirm</button>
+            <button type="button" class="btn" id="delete-btn">Delete</button>`
+            document.getElementById("add-delete-bookings").innerHTML = divToInsert;
             } 
         else{
             console.log("api returned false for success, printing the log");
             console.log(data_from_json);
             
             // we can redirect to error page here
-            //window.location.replace("error.html");
+            location.reload();
          }
     })
     .catch(err => console.log(err))
