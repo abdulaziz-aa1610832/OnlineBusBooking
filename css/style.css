@@ -488,3 +488,113 @@ footer {
   padding: 2rem;
   margin: auto;
 }
+
+.container {
+  width: 80%;
+  margin: 50px auto;
+}
+
+.contact-box {
+  background: #fff;
+  display: flex;
+}
+
+.contact-left {
+  flex-basis: 60%;
+  padding: 40px 60px;
+  /*background: burlywood;*/
+}
+
+.contact-right {
+  flex-basis: 40%;
+  padding: 40px;
+  background: #2a3236;
+  color: #fff;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.container p {
+  margin-bottom: 40px;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-row .input-group {
+  flex-basis: 45%;
+}
+
+.contactinput {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  padding-bottom: 5px;
+}
+textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.labelName {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.label-class {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.button {
+  padding: 0.6em;
+  background: #e8491d;
+  width: 200px;
+  border: none;
+  outline: none;
+  color: #fff;
+  height: 100px;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+.contact-left h3 {
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.contact-left h3 {
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+tr td:first-child {
+  padding-right: 20px;
+}
+
+tr td {
+  padding-top: 20px;
+}
+
+.col-title {
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.col-desc {
+  font-size: large;
+  font-weight: 800;
+}
+
+#btndiv {
+  margin-top: 1em;
+}
