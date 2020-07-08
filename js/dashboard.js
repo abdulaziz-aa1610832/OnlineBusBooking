@@ -80,10 +80,7 @@ function getRoutesInfo() {
     .then((data_in_json) => {
       console.log("logging data in json...");
       console.log(data_in_json);
-      let divToInsert = `<select id="sorting" onchange="sortTicket()">
-<option value="price-low-to-high">Price: Low to High</option>
-<option value="price-high-to-low">Price: High to Low</option>
-</select>
+      let divToInsert = `
 <form id="buyTicket" action="" method="post">
 <table id="routes-table"class="trips">
 <thead>
